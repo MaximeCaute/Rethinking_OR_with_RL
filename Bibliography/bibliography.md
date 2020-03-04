@@ -62,6 +62,11 @@ The authors consider electrical vehicle with battery reloading.
 - *DOI: 10.1016/j.trpro.2017.05.097*
 - [Link to the article presentation page & content](https://doi.org/10.1016/j.trpro.2017.05.097)
 
+Dynamic DaRP
+Madsen et Al.
+2 part algorithm : fast generation of answer + optimization during idle times
+Seemingly allowing task drop
+
 ### A Hyperheuristic for the Dial-a-Ride Problem with Time Windows
 - **Author(s): Enrique Urra, Claudio Cubillos, Daniel Cabrera-Paniagua**
 - *Institute(s): Pontificia Universidad Católica de Valparaíso, Valparaíso, Chile; Universidad de Valparaíso, Viña del Mar, Chile*
@@ -86,7 +91,7 @@ The Time-Window constraint adds restricting time limit in customer retrieval.
 ### Deep Pool: Distributed Model-Free Algorithm for Ride-Sharing using Deep Reinforcement Learning
 - **Author(s): Abubakr O. Al-Abbasi, Arnob Ghosh, Arnob Ghosh, Vaneet Aggarwal**
 - *Institute(s): Purdue University, West Lafayette, Indiana*
-- *Conference : IEEE*
+- *Journal: ITS*
 - **Year: December 2019**
 - [Link to the preprint - article under license](https://arxiv.org/pdf/1903.03882.pdf)
 - [Link to the article - under license](http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=8793143)
@@ -106,7 +111,7 @@ Seemingly relevant similar articles in MOVI: A model-free approach to dynamic fl
 - **Year 2018**
 - [Link to the article](https://arxiv.org/pdf/1812.00979.pdf)
 
-## Combining RL with OL
+## Combining RL with OR
 
 ### Neural Combination Optimization with Reinforcement Learning
 - **Author(s): Irwan Bello, Hieu Pham, Quoc V. Le, Mohammad Norouzi, Samy Bengio**
@@ -129,7 +134,7 @@ The article was rejected mostly due to overhyping over results not state-of-the-
 ### On a Successful Application of Multi-Agent Learning to Operations Research Benchmark
 - **Author(s): Thomas Gabel, Martin Riedmiller**
 - *Institute(s): University of Osnabrück, Osnabrück, Germany*
-- *Conference: IEEE*
+- *Conference: ADPRL*
 - **Year: 2007**
 - [Link to the article](http://ml.informatik.uni-freiburg.de/former/_media/publications/gabelriedmiller07a.pdf)
 
@@ -145,7 +150,7 @@ The authors deal with the problem of Job-shop scheduling problems, typical from 
 Theoretical article, with a listing of several methods from OR that have been applied to ML.
 
 
-## Learning OL with RL
+## Learning OR with RL
 
 ### Learning online combinatorial stochastic policies with deep reinforcement
 - **Author(s): Teo Stocco, Alexandre Alahi**
@@ -153,7 +158,7 @@ Theoretical article, with a listing of several methods from OR that have been ap
 - **Year: 2019**
 - [Link to the article](https://transp-or.epfl.ch/heart/2019/abstracts/hEART_2019_paper_120.pdf)
 
-## OL applications
+## OR applications
 
 ### A New Era for Crew Recovery at Continental Airlines
 - **Author(s): Gang Yu, Michael Argüello, Gao Song, Sandra M. McCowan, Anna White**
