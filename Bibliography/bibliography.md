@@ -71,9 +71,6 @@ The Time-Window constraint adds restricting time limit in customer retrieval.
 - *DOI: 10.1007/s12469-008-0006-1*
 - [Link to the presentation page - under license](https://doi.org/10.1007/s12469-008-0006-1)
 
-
-
-
 ### Solving the Dial-a-Ride problem using genetic algorithms
 - **Author(s): Kristin Berg Bergvinsdottir, Jesper Larsen, Rene Munk Jorgesen**
 - *Institute(s): Technical University of Denmark*
@@ -92,6 +89,8 @@ The Time-Window constraint adds restricting time limit in customer retrieval.
 - [Link to the preprint - article under license](https://arxiv.org/pdf/1903.03882.pdf)
 - [Link to the article - under license](http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=8793143)
 
+## RL for transportation systems
+
 ### Deep Reinforcement Learning for Intelligent Transportation Systems
 - **Author(s): Xiao-Yang Liu, Zihan Ding, Sem Borst, Anwar Walid**
 - *Institute(s): Colombia University; Imperial College, London; Nokia-Bell Laboratories*
@@ -99,7 +98,7 @@ The Time-Window constraint adds restricting time limit in customer retrieval.
 - **Year 2018**
 - [Link to the article](https://arxiv.org/pdf/1812.00979.pdf)
 
-## RL applied to OL
+## Combining RL with OL
 
 ### Neural Combination Optimization with Reinforcement Learning
 - **Author(s): Irwan Bello, Hieu Pham, Quoc V. Le, Mohammad Norouzi, Samy Bengio**
