@@ -23,7 +23,7 @@ Presentation and characterization of the problem and several algorithm for multi
 ### A survey of dial-a-ride problems: Literature review and recent developments
 - **Author(s): Sin C. Ho, W. Y. Szeto, Yong-Hong Kuo, Janny M. Y. Leung, Matthew Petering, Terence W. H. Tou**
 - *Institute(s): The Chinese University of Hong Kong, Hong Kong & Shenzhen, China; University of Wisconsin-Milwaukee, Milwaukee, USA; MTR Corporation Limited, Hong Kong, China*
-- *Journal: Transportation Research Part B: Methodological*
+- *Journal: Transportation Research Part B: Methodological* (note: good journal)
 - **Year: 2018**
 - *DOI: 10.1016/j.trb.2018.02.001*
 - [Link to the article presentation page - under license](https://doi.org/10.1016/j.trb.2018.02.001)
@@ -41,6 +41,32 @@ Ride-Sharing is allowed.
 Jaw et al. [6] as pioneer work.
 Detailed related work.
 Cluster-then-route method.
+
+## Learning OR with RL
+
+### Learning online combinatorial stochastic policies with deep reinforcement
+- **Author(s): Teo Stocco, Alexandre Alahi**
+- *Institute(s): EPFL, Lausanne, Switzerland*
+- **Year: 2019**
+- *Conference: hEART*
+- [Link to the article](https://transp-or.epfl.ch/heart/2019/abstracts/hEART_2019_paper_120.pdf)
+
+## RL applied to Dial-a-Ride problem
+
+### Deep Pool: Distributed Model-Free Algorithm for Ride-Sharing using Deep Reinforcement Learning
+- **Author(s): Abubakr O. Al-Abbasi, Arnob Ghosh, Arnob Ghosh, Vaneet Aggarwal**
+- *Institute(s): Purdue University, West Lafayette, Indiana*
+- *Journal: ITS*
+- **Year: December 2019**
+- [Link to the preprint - article under license](https://arxiv.org/pdf/1903.03882.pdf)
+- [Link to the article - under license](http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=8793143)
+
+The authors use a distributed method, which means that agents do not anticipate the behavior of others.
+Furthermore, their methods allows for ride-sharing between several customers.
+They also used convolutional NN for future demand.
+
+Seemingly relevant similar articles in MOVI: A model-free approach to dynamic fleet management & Taxi dispatch with real-time sensing data in metropolitan areas: A receding horizon control approach
+
 
 ## Dial-a-Ride extensions
 
@@ -85,22 +111,6 @@ The Time-Window constraint adds restricting time limit in customer retrieval.
 - **Year: 2009**
 - *DOI: 10.1007/s12469-008-0006-1*
 - [Link to the presentation page - under license](https://doi.org/10.1007/s12469-008-0006-1)
-
-## RL applied to Dial-a-Ride problem
-
-### Deep Pool: Distributed Model-Free Algorithm for Ride-Sharing using Deep Reinforcement Learning
-- **Author(s): Abubakr O. Al-Abbasi, Arnob Ghosh, Arnob Ghosh, Vaneet Aggarwal**
-- *Institute(s): Purdue University, West Lafayette, Indiana*
-- *Journal: ITS*
-- **Year: December 2019**
-- [Link to the preprint - article under license](https://arxiv.org/pdf/1903.03882.pdf)
-- [Link to the article - under license](http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=8793143)
-
-The authors use a distributed method, which means that agents do not anticipate the behavior of others.
-Furthermore, their methods allows for ride-sharing between several customers.
-They also used convolutional NN for future demand.
-
-Seemingly relevant similar articles in MOVI: A model-free approach to dynamic fleet management & Taxi dispatch with real-time sensing data in metropolitan areas: A receding horizon control approach
 
 ## RL for transportation systems
 
@@ -148,15 +158,6 @@ The authors deal with the problem of Job-shop scheduling problems, typical from 
 - [Link to the article](http://www.jmlr.org/articles/volume7/MLOPT-intro06a/MLOPT-intro06a.pdf)
 
 Theoretical article, with a listing of several methods from OR that have been applied to ML.
-
-
-## Learning OR with RL
-
-### Learning online combinatorial stochastic policies with deep reinforcement
-- **Author(s): Teo Stocco, Alexandre Alahi**
-- *Institute(s): EPFL, Lausanne, Switzerland*
-- **Year: 2019**
-- [Link to the article](https://transp-or.epfl.ch/heart/2019/abstracts/hEART_2019_paper_120.pdf)
 
 ## OR applications
 
