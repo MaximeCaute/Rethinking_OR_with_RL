@@ -27,7 +27,7 @@ NOT CONSULTED YET
 - *Institute(s): The Chinese University of Hong Kong, Hong Kong & Shenzhen, China; University of Wisconsin-Milwaukee, Milwaukee, USA; MTR Corporation Limited, Hong Kong, China*
 - *Journal: Transportation Research Part B: Methodological*
 - **Year: 2018**
-- *DOI: 10.1016/j.trb.2018.02.00**
+- *DOI: 10.1016/j.trb.2018.02.00*
 - [Link to the article presentation page - under license](https://doi.org/10.1016/j.trb.2018.02.00)
 
 NOT CONSULTED YET
