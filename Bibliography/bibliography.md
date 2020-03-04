@@ -32,6 +32,15 @@ NOT CONSULTED YET
 
 NOT CONSULTED YET
 
+### Solving the Dial-a-Ride problem using genetic algorithms
+- **Author(s): Kristin Berg Bergvinsdottir, Jesper Larsen, Rene Munk Jorgesen**
+- *Institute(s): Technical University of Denmark*
+- *Journal: Journal of the Operational Research Society*
+- **Year: 2007**
+- *DOI: 10.1057/palgrave.jors.2602287*
+- [Link to the presentation page](https://www.researchgate.net/publication/31955261_Solving_the_Dial-a-Ride_problem_using_genetic_algorithms)
+
+
 ## Dial-a-Ride extensions
 
 ### A Learning Large Neighborhood Search for the Dynamic Electric Autonomous Dial-a-Ride Problem
@@ -70,14 +79,6 @@ The Time-Window constraint adds restricting time limit in customer retrieval.
 - **Year: 2009**
 - *DOI: 10.1007/s12469-008-0006-1*
 - [Link to the presentation page - under license](https://doi.org/10.1007/s12469-008-0006-1)
-
-### Solving the Dial-a-Ride problem using genetic algorithms
-- **Author(s): Kristin Berg Bergvinsdottir, Jesper Larsen, Rene Munk Jorgesen**
-- *Institute(s): Technical University of Denmark*
-- *Journal: Journal of the Operational Research Society*
-- **Year: 2007**
-- *DOI: 10.1057/palgrave.jors.2602287*
-- [Link to the presentation page](https://www.researchgate.net/publication/31955261_Solving_the_Dial-a-Ride_problem_using_genetic_algorithms)
 
 ## RL applied to Dial-a-Ride problem
 
@@ -132,9 +133,9 @@ The authors deal with the problem of Job-shop scheduling problems, typical from 
 - *Institute(s): Rensselaer Polytechnic Institute, Troy, USA; University Carlos III de Madrid, Leganés, Spain*
 - *Journal: Journal of Machine Learning Research 7*
 - **Year: 2006**
-- [Link to the article](http://www.jmlr.org/papers/volume7/MLOPT-intro06a/MLOPT-intro06a.pdf)
+- [Link to the article](http://www.jmlr.org/articles/volume7/MLOPT-intro06a/MLOPT-intro06a.pdf)
 
-Theoretical article, with a listing of several methods from OR that could be applied to ML.
+Theoretical article, with a listing of several methods from OR that have been applied to ML.
 
 
 ## OL applications
