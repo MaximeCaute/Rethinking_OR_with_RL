@@ -4,42 +4,41 @@
 
 ### The Dial-a-Ride Problem: Variants, modeling issues and algorithms
 - **Author(s): Jean-François Cordeau, Gilbert Laporte**
-- *Institute(s): ?*
+- *Institute(s): HEC Montréal, Montréal, Canada*
 - *Journal: 4OR quarterly journal of the Belgian, French and Italian Operations Research Societies*
 - **Year: 2003**
 - *DOI: 10.1007/s10288-002-0009-8*
-- [Link to the article presentation page - under license](https://www.researchgate.net/publication/220340187_The_Dial-a-Ride_Problem_DARP_Variants_modeling_issues_and_algorithms)
-
-NOT CONSULTED YET
+- [Link to the article presentation page - under license](https://doi.org/10.1007/s10288-002-0009-8)
 
 ### The dial-a-ride problem: models and algorithms
 - **Author(s): Jean-François Cordeau, Gilbert Laporte**
-- *Institute(s): ?*
+- *Institute(s): HEC Montréal, Montréal, Canada*
 - *Journal: Annals of Operations Research*
 - **Year: 2007**
 - *DOI:  10.1007/s10479-007-0170-8*
 - [Link to the article presentation page - under license](https://link.springer.com/article/10.1007/s10479-007-0170-8)
-
-NOT CONSULTED YET
 
 ### A survey of dial-a-ride problems: Literature review and recent developments
 - **Author(s): Sin C. Ho, W. Y. Szeto, Yong-Hong Kuo, Janny M. Y. Leung, Matthew Petering, Terence W. H. Tou**
 - *Institute(s): The Chinese University of Hong Kong, Hong Kong & Shenzhen, China; University of Wisconsin-Milwaukee, Milwaukee, USA; MTR Corporation Limited, Hong Kong, China*
 - *Journal: Transportation Research Part B: Methodological*
 - **Year: 2018**
-- *DOI: 10.1016/j.trb.2018.02.00*
-- [Link to the article presentation page - under license](https://doi.org/10.1016/j.trb.2018.02.00)
-
-NOT CONSULTED YET
+- *DOI: 10.1016/j.trb.2018.02.001*
+- [Link to the article presentation page - under license](https://doi.org/10.1016/j.trb.2018.02.001)
 
 ### Solving the Dial-a-Ride problem using genetic algorithms
-- **Author(s): Kristin Berg Bergvinsdottir, Jesper Larsen, Rene Munk Jorgesen**
+- **Author(s): Kristin Berg Bergvinsdottir, Jesper Larsen, Rene Munk Jorgensen**
 - *Institute(s): Technical University of Denmark*
 - *Journal: Journal of the Operational Research Society*
 - **Year: 2007**
 - *DOI: 10.1057/palgrave.jors.2602287*
 - [Link to the presentation page](https://www.researchgate.net/publication/31955261_Solving_the_Dial-a-Ride_problem_using_genetic_algorithms)
-
+All-transportation requests are known in advance.
+Soft-time window are used, allowing penalties for violations.
+Ride-Sharing is allowed.
+Jaw et al. [6] as pioneer work.
+Detailed related work.
+Cluster-then-route method.
 
 ## Dial-a-Ride extensions
 
@@ -89,6 +88,10 @@ The Time-Window constraint adds restricting time limit in customer retrieval.
 - **Year: December 2019**
 - [Link to the preprint - article under license](https://arxiv.org/pdf/1903.03882.pdf)
 - [Link to the article - under license](http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=8793143)
+
+The authors use a distributed method, which means that agents do not anticipate the behavior of others.
+Furthermore, their methods allows for ride-sharing between several customers.
+They also used convolutional NN for future demand.
 
 ## RL for transportation systems
 
