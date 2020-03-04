@@ -18,6 +18,8 @@
 - *DOI:  10.1007/s10479-007-0170-8*
 - [Link to the article presentation page - under license](https://link.springer.com/article/10.1007/s10479-007-0170-8)
 
+Presentation and characterization of the problem and several algorithm for multiple variants.
+
 ### A survey of dial-a-ride problems: Literature review and recent developments
 - **Author(s): Sin C. Ho, W. Y. Szeto, Yong-Hong Kuo, Janny M. Y. Leung, Matthew Petering, Terence W. H. Tou**
 - *Institute(s): The Chinese University of Hong Kong, Hong Kong & Shenzhen, China; University of Wisconsin-Milwaukee, Milwaukee, USA; MTR Corporation Limited, Hong Kong, China*
@@ -93,6 +95,8 @@ The authors use a distributed method, which means that agents do not anticipate 
 Furthermore, their methods allows for ride-sharing between several customers.
 They also used convolutional NN for future demand.
 
+Seemingly relevant similar articles in MOVI: A model-free approach to dynamic fleet management & Taxi dispatch with real-time sensing data in metropolitan areas: A receding horizon control approach
+
 ## RL for transportation systems
 
 ### Deep Reinforcement Learning for Intelligent Transportation Systems
@@ -140,6 +144,14 @@ The authors deal with the problem of Job-shop scheduling problems, typical from 
 
 Theoretical article, with a listing of several methods from OR that have been applied to ML.
 
+
+## Learning OL with RL
+
+### Learning online combinatorial stochastic policies with deep reinforcement
+- **Author(s): Teo Stocco, Alexandre Alahi**
+- *Institute(s): EPFL, Lausanne, Switzerland*
+- **Year: 2019**
+- [Link to the article](https://transp-or.epfl.ch/heart/2019/abstracts/hEART_2019_paper_120.pdf)
 
 ## OL applications
 
