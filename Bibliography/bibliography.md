@@ -132,7 +132,7 @@ The authors deal with the problem of Job-shop scheduling problems, typical from 
 - *Institute(s): Rensselaer Polytechnic Institute, Troy, USA; University Carlos III de Madrid, Leganés, Spain*
 - *Journal: Journal of Machine Learning Research 7*
 - **Year: 2006**
-- [Link to the article](http://www.jmlr.org/articles/volume7/MLOPT-intro06a/MLOPT-intro06a.pdf)
+- [Link to the article](http://www.jmlr.org/papers/volume7/MLOPT-intro06a/MLOPT-intro06a.pdf)
 
 Theoretical article, with a listing of several methods from OR that could be applied to ML.
 
