@@ -1,6 +1,6 @@
 # Bibliography for the project
 
-## Dial-a-Ride Problem
+## Dial-a-Ride Problem with OR
 
 ### The Dial-a-Ride Problem: Variants, modeling issues and algorithms
 - **Author(s): Jean-François Cordeau, Gilbert Laporte**
@@ -42,41 +42,13 @@ Jaw et al. [6] as pioneer work.
 Detailed related work.
 Cluster-then-route method.
 
-## Learning OR with RL
-
-### Learning online combinatorial stochastic policies with deep reinforcement
-- **Author(s): Teo Stocco, Alexandre Alahi**
-- *Institute(s): EPFL, Lausanne, Switzerland*
-- **Year: 2019**
-- *Conference: hEART*
-- [Link to the article](https://transp-or.epfl.ch/heart/2019/abstracts/hEART_2019_paper_120.pdf)
-
-## RL applied to Dial-a-Ride problem
-
-### Deep Pool: Distributed Model-Free Algorithm for Ride-Sharing using Deep Reinforcement Learning
-- **Author(s): Abubakr O. Al-Abbasi, Arnob Ghosh, Arnob Ghosh, Vaneet Aggarwal**
-- *Institute(s): Purdue University, West Lafayette, Indiana*
-- *Journal: ITS*
-- **Year: December 2019**
-- [Link to the preprint - article under license](https://arxiv.org/pdf/1903.03882.pdf)
-- [Link to the article - under license](http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=8793143)
-
-The authors use a distributed method, which means that agents do not anticipate the behavior of others.
-Furthermore, their methods allows for ride-sharing between several customers.
-They also used convolutional NN for future demand.
-
-Seemingly relevant similar articles in MOVI: A model-free approach to dynamic fleet management & Taxi dispatch with real-time sensing data in metropolitan areas: A receding horizon control approach
-
-
-## Dial-a-Ride extensions
-
 ### A Learning Large Neighborhood Search for the Dynamic Electric Autonomous Dial-a-Ride Problem
 - **Author(s): Claudia Bongiovanni, Mor Kaspi, Jean-François Cordeau, Nikolas Geroliminis**
 - *Institute(s): EPFL, Lausanne, Switzerland; Tel-Aviv University, Tel-Aviv, Israel; HEC Montréal, Montréal, Canada*
 - *Conference: hEART*
 - **Year: September 2019**
 - *DOI: ?*
-- [Link to the article](https://transp-or.epfl.ch/heart/2019/abstracts/hEART_2019_article_121.pdf)
+- [Link to the article](https://transp-or.epfl.ch/heart/2019/abstracts/hEART_2019_paper_121.pdf)
 
 The authors consider electrical vehicle with battery reloading.
 
@@ -104,6 +76,34 @@ Seemingly allowing task drop
 
 The Time-Window constraint adds restricting time limit in customer retrieval.
 
+## RL applied to Dial-a-Ride problem
+
+### Deep Pool: Distributed Model-Free Algorithm for Ride-Sharing using Deep Reinforcement Learning
+- **Author(s): Abubakr O. Al-Abbasi, Arnob Ghosh, Arnob Ghosh, Vaneet Aggarwal**
+- *Institute(s): Purdue University, West Lafayette, Indiana*
+- *Journal: ITS*
+- **Year: December 2019**
+- [Link to the preprint - article under license](https://arxiv.org/pdf/1903.03882.pdf)
+- [Link to the article - under license](http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=8793143)
+
+The authors use a distributed method, which means that agents do not anticipate the behavior of others.
+Furthermore, their methods allows for ride-sharing between several customers.
+They also used convolutional NN for future demand.
+
+Seemingly relevant similar articles in MOVI: A model-free approach to dynamic fleet management & Taxi dispatch with real-time sensing data in metropolitan areas: A receding horizon control approach
+
+## Learning OR with RL in DaRP
+
+### Learning online combinatorial stochastic policies with deep reinforcement
+- **Author(s): Teo Stocco, Alexandre Alahi**
+- *Institute(s): EPFL, Lausanne, Switzerland*
+- **Year: 2019**
+- *Conference: hEART*
+- [Link to the article](https://transp-or.epfl.ch/heart/2019/abstracts/hEART_2019_paper_120.pdf)
+
+
+## Dial-a-Ride extensions
+
 ### The Integrated Dial-a-Ride Problem
 - **Author(s): Carl H. Häll, Henrik Andersson, Jan T. Lundgren, Peter Värbrand**
 - *Institute(s): ?*
@@ -111,17 +111,23 @@ The Time-Window constraint adds restricting time limit in customer retrieval.
 - **Year: 2009**
 - *DOI: 10.1007/s12469-008-0006-1*
 - [Link to the presentation page - under license](https://doi.org/10.1007/s12469-008-0006-1)
+- [Link to the article](https://link.springer.com/content/pdf/10.1007/s12469-008-0006-1.pdf)
 
-## RL for transportation systems
 
-### Deep Reinforcement Learning for Intelligent Transportation Systems
-- **Author(s): Xiao-Yang Liu, Zihan Ding, Sem Borst, Anwar Walid**
-- *Institute(s): Colombia University; Imperial College, London; Nokia-Bell Laboratories*
-- *Conference: NIPS*
-- **Year 2018**
-- [Link to the article](https://arxiv.org/pdf/1812.00979.pdf)
+
+# Loosely related bibliography
+
 
 ## Combining RL with OR
+
+### On a Successful Application of Multi-Agent Learning to Operations Research Benchmark
+- **Author(s): Thomas Gabel, Martin Riedmiller**
+- *Institute(s): University of Osnabrück, Osnabrück, Germany*
+- *Conference: ADPRL*
+- **Year: 2007**
+- [Link to the article](http://ml.informatik.uni-freiburg.de/former/_media/publications/gabelriedmiller07a.pdf)
+
+The authors deal with the problem of Job-shop scheduling problems, typical from operations research. TODO
 
 ### Neural Combination Optimization with Reinforcement Learning
 - **Author(s): Irwan Bello, Hieu Pham, Quoc V. Le, Mohammad Norouzi, Samy Bengio**
@@ -141,15 +147,6 @@ The article was rejected mostly due to overhyping over results not state-of-the-
 - [Link to the article presentation page - under license](https://link.springer.com/chapter/10.1007%2F978-3-030-13709-0_46)
 - [Link to the article - under license](https://link.springer.com/content/pdf/10.1007%2F978-3-030-13709-0_46.pdf)
 
-### On a Successful Application of Multi-Agent Learning to Operations Research Benchmark
-- **Author(s): Thomas Gabel, Martin Riedmiller**
-- *Institute(s): University of Osnabrück, Osnabrück, Germany*
-- *Conference: ADPRL*
-- **Year: 2007**
-- [Link to the article](http://ml.informatik.uni-freiburg.de/former/_media/publications/gabelriedmiller07a.pdf)
-
-The authors deal with the problem of Job-shop scheduling problems, typical from operations research. TODO
-
 ### The Interplay of Optimization and Machine Learning Research
 - **Author(s): Kristin P. Benett, Emilio Parrado-Hernandez**
 - *Institute(s): Rensselaer Polytechnic Institute, Troy, USA; University Carlos III de Madrid, Leganés, Spain*
@@ -158,6 +155,17 @@ The authors deal with the problem of Job-shop scheduling problems, typical from 
 - [Link to the article](http://www.jmlr.org/articles/volume7/MLOPT-intro06a/MLOPT-intro06a.pdf)
 
 Theoretical article, with a listing of several methods from OR that have been applied to ML.
+
+
+## RL for transportation systems
+
+### Deep Reinforcement Learning for Intelligent Transportation Systems
+- **Author(s): Xiao-Yang Liu, Zihan Ding, Sem Borst, Anwar Walid**
+- *Institute(s): Colombia University; Imperial College, London; Nokia-Bell Laboratories*
+- *Conference: NIPS*
+- **Year 2018**
+- [Link to the article](https://arxiv.org/pdf/1812.00979.pdf)
+
 
 ## OR applications
 
