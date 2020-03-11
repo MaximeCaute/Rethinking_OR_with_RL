@@ -34,3 +34,30 @@ __________________
 #### Report
 - Writing the "Related Work" section
 __________________
+# March 11th 2020
+
+### DONE
+
+#### Generic
+- Prepared a generic presentation of the project (6 slides)
+
+#### Bibliography
+- Consultation of several closely related papers
+- Found a 1997 MIT Report for RL in DaRP
+
+#### Code
+- Several neural Networks trained and tested
+
+#### Report
+- Planned "Related works section"
+
+### TODO
+
+#### Generic
+- Testing dervers for tests
+
+#### Code
+- Continue testing imitation learning networks
+
+#### Report
+- Continuing the "Related Work" section
