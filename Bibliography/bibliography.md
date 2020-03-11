@@ -2,6 +2,24 @@
 
 ## Dial-a-Ride Problem with OR
 
+### A heuristic algorithm for the multi-vehicle advance request dial-a-ride problem with time windows
+- **Author(s): Jang-Jei Jaw, Amedeo R. Odoni, Harilaos N. Psaraftis, Nigel H.M. Wilson.**
+- *Institute(s): MIT, Cambridge, USA*
+- *Journal: Transportation Research Part B: Methodological*
+- **Year: 1986**  (received 1984)
+- *DOI: 10.1016/0191-2615(86)90020-2*
+- [Link to the article presentation page](https://www.sciencedirect.com/science/article/pii/0191261586900202?via%3Dihub)
+
+Considered pioneer.
+
+### A Branch-and-Cut Algorithm for the Dial-a-Ride Problem
+- **Author(s): Jean-François Cordeau**
+- *Institute(s): HEC Montréal*
+- *Journal: Operations Research*
+- **Year: 2006**
+- *DOI: 10.1287/opre.1060.0283*
+- [Link to the article presentation page - under license](https://doi.org/10.1287/opre.1060.0283)
+
 ### The Dial-a-Ride Problem: Variants, modeling issues and algorithms
 - **Author(s): Jean-François Cordeau, Gilbert Laporte**
 - *Institute(s): HEC Montréal, Montréal, Canada*
@@ -19,6 +37,14 @@
 - [Link to the article presentation page - under license](https://link.springer.com/article/10.1007/s10479-007-0170-8)
 
 Presentation and characterization of the problem and several algorithm for multiple variants.
+
+### Variable neighborhood search for the dial-a-ride problem
+- **Author(s): Sophie N. Parragh, Karl F. Doerner, Richard F. Hartl**
+- *Institute(s): University of Vienna, Vienna, Austria*
+- *Journal: Computers & Operations Research*
+- **Year: 2009**
+- *DOI: 10.1016/j.cor.2009.10.003*
+- [Link to the article presentation page - under license](https://doi.org/10.1016/j.cor.2009.10.003)
 
 ### A survey of dial-a-ride problems: Literature review and recent developments
 - **Author(s): Sin C. Ho, W. Y. Szeto, Yong-Hong Kuo, Janny M. Y. Leung, Matthew Petering, Terence W. H. Tou**
@@ -100,6 +126,17 @@ Seemingly relevant similar articles in MOVI: A model-free approach to dynamic fl
 - **Year: 2019**
 - *Conference: hEART*
 - [Link to the article](https://transp-or.epfl.ch/heart/2019/abstracts/hEART_2019_paper_120.pdf)
+
+## DaRP approximations
+
+### Dial-a-Ride from k-Forest
+- **Author(s): Anupam Gupta, Mohammadtaghi Hajiaghayi, Viswanath Nagarajan, R. Ravi**
+- *Institute(s): Carnegie Mellon University, AT&T Research Labs, IBM T.J. Watson Research Center*
+- *Journal: ACM Transactions on Technologies*
+- **Year: 2010**
+- *DOI: 10.1145/1721837.1721857*
+- [Link to the presentation page](https://doi.org/10.1145/1721837.1721857)
+- [Link to the article](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.206.5040&rep=rep1&type=pdf)
 
 
 ## Dial-a-Ride extensions
