@@ -1,6 +1,8 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
 \usepackage{amssymb}
+\usepackage{cite}
+
 
 \title{Rethinking OR with RL}
 \author{Maxime Cauté}
@@ -12,15 +14,46 @@
 \section{Related Work}
 
 
-DaRPs have been extensively studied since its first formalization in 1986 by Jaw et al.\cite{TODO}, due to their application to industrial concerns.
+DaRPs have been extensively studied since its first formalization in 1986 by Jaw et al.\cite{jaw1986heuristic}, due to their application to industrial concerns.
 The first approaches have been focused on OR resolutions.
-An extensive 2018 review can be found in \cite{Ho2018}.
-Reinforcement Learning has later been considered as another solution method for this problem.
-
-A deterministic, exact approach was first (?) presented by Cordeau in 2006 \cite{TODO}.
+An extensive 2018 review can be found in \cite{ho2018survey}.
+A deterministic, exact approach was first presented by Cordeau in 2006 \cite{cordeau2006branch}.
 The proposed algorithm relied on branch-and-cut methods.
 However, exact method suffer from the NP-Hardness of DaRP: their computation time is exponential to the entry size!
-Heuristic approaches have therefore been numerous.
+
+Many modern OR approches to tackle this problem are therefore now based on heuristics.
+
+In 2019, Claudia Bongiovanni et al. \cite{bongiovannilearning} proposed the policy which we will consider as 'optimal'.
+It relies on a two-phase insertion algorithm:
+the requests are, if possible, first assigned to the vehicle best able to respond to it through limited schedule reorganization (e.g. segments shifting);
+after a certain amount of new request, an optimization process is then started with intra- and extra-route modifications, for previously approved requests only.
+This optimization process notably employs Large Neighborhood Search.
+%This method achieved
+
+Reinforcement Learning has also been considered as another solution method for this very problem.
+This prospect has only been recently explored, hence a limited amount of related works.
+
+Its potential was yet shown in 2015 by Vinyals et al. \cite{vinyals2015pointer},
+who achieved remarkable accuracy in discovering the optimal policy for several combinatorial problems through deep neural networks.
+Their architecture, called Pointer Network, adapts Long Short-Term Memories Recurrent Neural Networks for variable input size.
+
+In the field of DaRP application, in 2019, Al-Abbasi et al. \cite{al2019deeppool} considered a deep RL, model-free approach.
+They use convolutional, deep Q-networks in order to learn optimal fleet dispatch policies
+with regards to both customer (ride time) and company (resource use) points of view.
+A notable feature is the use of a distributed decision-making, as
+the vehicles learn individually from the environment.
+The framework is further exploiting customer statistics, trying to predict further demand.
+These two key points lead the authors to better results than frameworks omitting them.
+
+The methods considered above try to compare policies learnt from the environment to expert-given, optimal policies.
+In 2018, Stocco and Alahi considered a novel approach for DaRP,
+which rather aimed at directly learning the expert policy.
+To this extent, they used supervised reinforcement learning through a deep neural network.
+As the input was turned into an image, %LeNet ?
+the considered architecture consisted in 3 successive, batch normalized, linearly rectified convolutional layers of size 5x5,
+followed by 3 similar deconvolutional ones.
+Compared to nearest neighbor policy, they report a promising accuracy around $75 \%$,
+image projection being likely responsible for a $25\%$ information loss.
 
 %%%%%%%%%%%
 %Cordeau also proposed earlier, in 2003, a Tabu Search method for approximate results \cite{TODO}.
@@ -41,10 +74,7 @@ Heuristic approaches have therefore been numerous.
 %Mention Bongiovanni
 %%%%%%%%%%%%%%%%%%%%
 
-A deep RL approach was recently considered by Al-Abbasi et al. \cite{TODO}
-
-%Vinyals et al. (2015)
-
-
+\bibliographystyle{unsrt}
+\bibliography{biblio}
 
 \end{document}

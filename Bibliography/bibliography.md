@@ -68,6 +68,16 @@ Jaw et al. [6] as pioneer work.
 Detailed related work.
 Cluster-then-route method.
 
+### A Two-Phase Heuristic Approach For the Dynamic Electic  Autonomous Dial-a-Ride Problem
+- **Author(s): Claudia Bongiovanni, Mor Kaspi, Jean-François Cordeau, Nikolas Geroliminis**
+- *Institute(s): EPFL, Lausanne, Switzerland*
+- *Conference: hEART*
+- **Year 2018**
+- *DOI: ?*
+- [Link to the article](https://transp-or.epfl.ch/heart/2018/abstracts/5476.pdf)
+
+Abstract for our considered policy (insertion algorithm)
+
 ### A Learning Large Neighborhood Search for the Dynamic Electric Autonomous Dial-a-Ride Problem
 - **Author(s): Claudia Bongiovanni, Mor Kaspi, Jean-François Cordeau, Nikolas Geroliminis**
 - *Institute(s): EPFL, Lausanne, Switzerland; Tel-Aviv University, Tel-Aviv, Israel; HEC Montréal, Montréal, Canada*
@@ -77,6 +87,14 @@ Cluster-then-route method.
 - [Link to the article](https://transp-or.epfl.ch/heart/2019/abstracts/hEART_2019_paper_121.pdf)
 
 The authors consider electrical vehicle with battery reloading.
+
+### The Online Electric Autonomous Dial-A-Ride Problem: A Dynamic Insertion Algorithm
+- **Author(s): Anouk Larisse Allenspach**
+- *Institute(s): EPFL, Lausanne, Switzerland*
+- *Master Thesis*
+- **Year: 2018**
+
+Presentation of the considered insertion algorithm policy.
 
 ### Online algorithm for dynamic dial a ride problem and its metrics
 - **Author(s): Athanasios Lois, Athanasios Ziliaskopoulos**
@@ -156,6 +174,13 @@ Seemingly relevant similar articles in MOVI: A model-free approach to dynamic fl
 
 
 ## Combining RL with OR
+
+### Pointer Networks
+- **Author(s): Oriol Vinyals, Meire Fortunato, Navdeep Jaitly**
+- *Institute(s): Google Brain; Department of Mathematics, UC Berkeley*
+- *Conference: NIPS*
+- **Year: 2015**
+- [Link to the article](https://papers.nips.cc/paper/5866-pointer-networks.pdf)
 
 ### On a Successful Application of Multi-Agent Learning to Operations Research Benchmark
 - **Author(s): Thomas Gabel, Martin Riedmiller**
