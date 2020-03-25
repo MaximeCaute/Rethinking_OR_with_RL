@@ -54,10 +54,50 @@ __________________
 ### TODO
 
 #### Generic
-- Testing dervers for tests
+- Testing servers for tests
 
 #### Code
 - Continue testing imitation learning networks
 
 #### Report
 - Continuing the "Related Work" section
+
+__________________
+# March 17th 2020
+
+**CoVID-19 pandemic measures hampering organization**
+__________________
+# March 24th 2020
+
+### DONE
+
+#### Code
+- Reproduction of some precedent results with neural networks.
+*NB: Strangely, slightly lower accuracy*
+- Tested several minor architecture changes: added convolutional, linear layers, changed layer sizes, convolutional kernel size...
+  - not very conclusive, generally worse results
+
+#### Bibliography
+- Lecture of Vinyals et al.
+- Detailed lecture of Bongiovanni et al.,
+  - Brief analysis of policy: presence of randomness in inputs, sequential algorithm.
+- Detailed lecture of Stocco and Alahi for problem framing.
+
+#### Report
+- Wrote a first "Related Works" version, mentioning the most closely related works
+
+### TODO
+
+#### Generic
+- Testing servers for tests (access received)
+
+#### Theory
+- Ensure policy's learnability
+  - How to limit randomness?
+  - Can we capture the whole information?
+  - Aiming for the best modelization of states
+- Find methods for RL improvement (with reward for efficiency...)
+
+#### Code
+- Explore RNNs architecture (to model iterations of the algorithm)
+- Further results reproduction
