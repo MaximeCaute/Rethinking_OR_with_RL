@@ -1,1 +1,3 @@
 Bibliography/*.pdf
+Papers/report.*
+!Papers/report.tex
