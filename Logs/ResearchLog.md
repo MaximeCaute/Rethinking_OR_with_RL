@@ -101,3 +101,25 @@ __________________
 #### Code
 - Explore RNNs architecture (to model iterations of the algorithm)
 - Further results reproduction
+
+__________________
+# April 1st 2020
+
+### DONE
+
+#### Generic
+- SSH access (through VPN) tested for servers
+
+#### Theory
+- Isolated essential components for problem encapsulation(e.g. time windows)
+  -> Still difficult learnability
+- Considered theoretical methods for RL improvement.
+
+#### Code
+- Tried several RNN architecture (low results)
+
+### TODO
+
+#### Code
+- Test network on simple, deterministic policies(e.g nearest neighbour)
+- Generate new data with time-windows
