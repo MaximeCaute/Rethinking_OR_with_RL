@@ -11,5 +11,4 @@ def save_table(table, index, folder='.', relative_path = ""):
     np.save('./'+relative_path+folder+'/table_{}.pkl.npy'.format(index), table, allow_pickle = True)
 
 def load_table(index, folder='.', relative_path = ""):
-    print("Load:"+'./'+relative_path+folder+'/table_{}.pkl.npy')
     return np.load('./'+relative_path+folder+'/table_{}.pkl.npy'.format(index),allow_pickle = True)
