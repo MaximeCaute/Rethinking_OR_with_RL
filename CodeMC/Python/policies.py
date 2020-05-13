@@ -53,19 +53,19 @@ def assignements_from_table(table, policy):
     assignements_table = [policy(situation) for situation in table]
     return assignements_table
 
-def generate_assignements_from_indices(indices, policy):
+def generate_assignements_from_indices(indices, policy, load_path = ""):
     for i in indices:
-        situations_table = data_saver.load_table(i, folder = "situations_tables")
+        situations_table = data_saver.load_table(i, folder = "situations_tables", relative_path = load_path)
         assignements_table = assignements_from_table(situations_table,policy)
-        data_saver.save_table(assignements_table, i, folder = "assignements_tables")
+        data_saver.save_table(assignements_table, i, folder = "assignements_tables", relative_path = load_path)
 
 def test_policy_tables(table, assignements_table, policy):
     for i, situation in enumerate(table):
-        policy_choice = policy(situation)
-        assignement = assignements_table[i]
+        policy_choice = tuple(policy(situation))
+        assignement = tuple(assignements_table[i])
 
         if policy_choice != assignement:
             print("Wrong choice!", situation, assignement, policy_choice)
 
 if __name__ == "__main__":
-    generate_assignements_from_indices(range(2000), top_corner_policy)
+    generate_assignements_from_indices(range(2000), nearest_neighbour_policy, load_path = "")

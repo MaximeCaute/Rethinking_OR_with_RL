@@ -75,17 +75,17 @@ def compute_loss(loss_criterion, network_output_tensor, expert_output_tensor):
 def epoch_from_indices(network, indices,
                        loss_criterion, optimizer = None,
                        minibatch_size = 50, epochs_id = -1,
-                       data_norm = False):
+                       data_norm = False, data_path = ""):
     """
     Test if optimizer is none, training otherwise
     """
 
     for i in indices:
 
-        situations_table = data_saver.load_table(i, folder = "situations_tables")
+        situations_table = data_saver.load_table(i, folder = "situations_tables", relative_path = data_path)
         situations_images = data_images.situation_table_to_2_channels(situations_table, network.image_size)
 
-        assignements_table = data_saver.load_table(i, folder = "assignements_tables")
+        assignements_table = data_saver.load_table(i, folder = "assignements_tables", relative_path = data_path)
         assignements_images = data_images.assignement_table_to_image(assignements_table, network.image_size)
 
         batch_size = len(situations_images)
@@ -126,7 +126,8 @@ def train_and_test_from_indices(network, training_indices, testing_indices,
                                 loss_criterion, optimizer,
                                 epochs_amount = 15, minibatch_size = 50,
                                 verbose = False, learning_curve = False,
-                                break_accuracy = 1.2, data_norm = False):
+                                break_accuracy = 1.2, data_norm = False,
+                                data_path = ""):
 
     training_accuracies = []
     training_losses = []
@@ -138,11 +139,13 @@ def train_and_test_from_indices(network, training_indices, testing_indices,
         training_loss, training_epoch_accuracies = epoch_from_indices(network, training_indices,
                                                              loss_criterion, optimizer = optimizer,
                                                              minibatch_size = minibatch_size,
-                                                             epochs_id = e, data_norm = data_norm)
+                                                             epochs_id = e, data_norm = data_norm,
+                                                             data_path = data_path)
         testing_loss, testing_epoch_accuracies =   epoch_from_indices(network, testing_indices,
                                                              loss_criterion, optimizer = None,
                                                              minibatch_size = minibatch_size,
-                                                             epochs_id = e, data_norm = data_norm)
+                                                             epochs_id = e, data_norm = data_norm,
+                                                             data_path = data_path)
 
 
         training_accuracy = np.mean(training_epoch_accuracies)

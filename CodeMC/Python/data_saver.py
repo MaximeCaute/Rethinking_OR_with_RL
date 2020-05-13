@@ -7,8 +7,9 @@ The functions in this file are used to read and save data.
 """
 import numpy as np
 
-def save_table(table, index, folder='.'):
-    np.save('./NN_tables/'+folder+'/table_{}.pkl.npy'.format(index), table, allow_pickle = True)
+def save_table(table, index, folder='.', relative_path = ""):
+    np.save('./'+relative_path+folder+'/table_{}.pkl.npy'.format(index), table, allow_pickle = True)
 
-def load_table(index, folder='.'):
-    return np.load('./NN_tables/'+folder+'/table_{}.pkl.npy'.format(index),allow_pickle = True)
+def load_table(index, folder='.', relative_path = ""):
+    print("Load:"+'./'+relative_path+folder+'/table_{}.pkl.npy')
+    return np.load('./'+relative_path+folder+'/table_{}.pkl.npy'.format(index),allow_pickle = True)

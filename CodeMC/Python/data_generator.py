@@ -151,7 +151,7 @@ def generate_situations_table(requests_amount = 100, image_size = 30, fleet_size
 def generate_tables(tables_amount, requests_amount = 100, image_size = 30, fleet_size = 30,
                     vehicle_overlaps = True,
                     multiple_nearest = True, reference_for_nearest = (-1,-1),
-                    save = False):
+                    save = False, save_path = ""):
     tables = []
     for n in range(tables_amount):
         table = generate_situations_table(requests_amount = requests_amount,
@@ -160,7 +160,7 @@ def generate_tables(tables_amount, requests_amount = 100, image_size = 30, fleet
                                           multiple_nearest = multiple_nearest, reference_for_nearest = reference_for_nearest)
 
         if save:
-            data_saver.save_table(table, n, folder = 'situations_tables')
+            data_saver.save_table(table, 2000+n, folder = 'situations_tables', relative_path = save_path)
         else:
             tables.append(table)
     return tables
@@ -192,7 +192,7 @@ def test(table, a_table, multiple_nns = False, fleet_size = 30):
 
 
 if __name__ == "__main__":
-    generate_tables(2000, requests_amount = 500, image_size = 80, fleet_size = 30,
+    generate_tables(2000, requests_amount = 500, image_size = 30, fleet_size = 10,
                     vehicle_overlaps = False,
-                    multiple_nearest = False, reference_for_nearest = (0,0),
-                    save = True)
+                    multiple_nearest = False, reference_for_nearest = (-1,-1),
+                    save = True, save_path = "")
