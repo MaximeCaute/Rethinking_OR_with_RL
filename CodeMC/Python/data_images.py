@@ -10,7 +10,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 def request_image(situation, image_size):
-    image = np.zeros((image_size, image_size))
+    image = - np.ones((image_size, image_size))
 
     request = situation[0]
 
@@ -18,19 +18,19 @@ def request_image(situation, image_size):
     x_dropoff, y_dropoff = request[2], request[3]
 
     image[x_pickup, y_pickup] = 1
-    image[x_dropoff, y_dropoff] = -1
+    #image[x_dropoff, y_dropoff] = -2
 
     return image
 
 def vehicles_image(situation, image_size):
-    image = np.zeros((image_size, image_size))
+    image = -np.ones((image_size, image_size))
 
     vehicles =  situation[1:]
 
     for vehicle in vehicles:
         x_vehicle, y_vehicle = vehicle[0], vehicle[1]
 
-        image[x_vehicle, y_vehicle]+= 1
+        image[x_vehicle, y_vehicle] = 1
 
     return image
 
