@@ -57,7 +57,6 @@ def compute_accuracy(network_output_tensor, expert_output_tensor):
     expert_chosen_positions =  get_chosen_positions(expert_output_tensor)
 
     matches = (network_chosen_positions == expert_chosen_positions)
-    #accuracy = float(matches.sum())/len(matches)
     accuracy = np.mean(matches)
     return accuracy
 
@@ -103,7 +102,6 @@ def epoch_from_indices(network, indices,
             if optimizer is not None:
                 optimizer.zero_grad()
 
-            #print(np.array(situations_images).shape, np.array(assignements_images).shape)
             input_tensor = get_input_data_tensor(situations_images, minibatch_indices, data_norm = data_norm)
 
             network_output_tensor = network(input_tensor)
