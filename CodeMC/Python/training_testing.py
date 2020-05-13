@@ -73,51 +73,6 @@ def compute_loss(loss_criterion, network_output_tensor, expert_output_tensor):
                                         expert_output_tensor.view(batch_size,-1) )
     return minibatch_loss
 
-
-
-# def epoch_from_images(network, situations_images, assignements_images,
-#                               loss_criterion, optimizer = None,
-#                               minibatch_size = 50, epochs_id = -1):
-#     """
-#     Test if optimizer is none, training otherwise
-#     """
-#     batch_size = len(situations_images)
-#     batch_indices = range(batch_size)
-#
-#     accuracies = []
-#     summed_loss = 0
-#
-#     for b in range(0, batch_size, minibatch_size):
-#         minibatch_indices = batch_indices[b:b+minibatch_size]
-#
-#
-#         # Setting gradient to zero for training
-#         if optimizer is not None:
-#             optimizer.zero_grad()
-#
-#         #print(np.array(situations_images).shape, np.array(assignements_images).shape)
-#         input_tensor = get_input_data_tensor(situations_images, minibatch_indices)
-#         print(minibatch_indices)
-#         network_output_tensor = network(input_tensor)
-#         expert_output_tensor = get_output_data_tensor(assignements_images, minibatch_indices)
-#
-#         # Computing loss on flattened tensor output
-#         #minibatch_loss = loss_criterion(network_output_tensor.view(-1, network.image_size**2),
-#         #                                expert_output_tensor.view(-1, network.image_size**2) )
-#         print(network_output_tensor.shape, expert_output_tensor.shape)
-#         minibatch_loss = compute_loss(loss_criterion, network_output_tensor, expert_output_tensor)
-#
-#         if optimizer is not None:
-#             minibatch_loss.backward()
-#             optimizer.step()
-#
-#         minibatch_accuracy = compute_accuracy(network_output_tensor, expert_output_tensor)
-#
-#         summed_loss+= minibatch_loss.item()
-#         accuracies.append(minibatch_accuracy)
-#
-#     return summed_loss, accuracies
-
 def epoch_from_indices(network, indices,
                        loss_criterion, optimizer = None,
                        minibatch_size = 50, epochs_id = -1,
@@ -155,8 +110,6 @@ def epoch_from_indices(network, indices,
             expert_output_tensor = get_output_data_tensor(assignements_images, minibatch_indices)
 
             # Computing loss on flattened tensor output
-            #minibatch_loss = loss_criterion(network_output_tensor.view(-1, network.image_size**2),
-            #                                expert_output_tensor.view(-1, network.image_size**2) )
             minibatch_loss = compute_loss(loss_criterion, network_output_tensor, expert_output_tensor)
 
             if optimizer is not None:
@@ -170,39 +123,6 @@ def epoch_from_indices(network, indices,
 
     return summed_loss, accuracies
 
-
-# def train_and_test_from_images(network,
-#                                training_situation_images, training_assignement_images,
-#                                testing_situation_images, testing_assignement_images,
-#                                loss_criterion, optimizer,
-#                                epochs_amount = 15, minibatch_size = 50,
-#                                verbose = False):
-#
-#     testing_accuracies = []
-#
-#     for e in range(epochs_amount):
-#         training_loss, training_accuracy = epoch_from_images(network, training_situation_images, training_assignement_images,
-#                                                              loss_criterion, optimizer = optimizer,
-#                                                              minibatch_size = minibatch_size,
-#                                                              epochs_id = e)
-#         testing_loss, testing_accuracy =   epoch_from_images(network, testing_situation_images, testing_assignement_images,
-#                                                              loss_criterion, optimizer = None,
-#                                                              minibatch_size = minibatch_size,
-#                                                              epochs_id = e)
-#
-#
-#         testing_accuracies.append(testing_accuracy)
-#
-#         if verbose:
-#             print("\rEpoch {}. Training Loss: {:.3f}, Training Accuracy: {:.3f}, Testing Loss: {:.3f}, Testing Accuracy: {:.3f} ".format(e, training_loss, training_accuracy, testing_loss, testing_accuracy))
-#
-#     max_accuracy_epoch = np.argmax(testing_accuracies)
-#     max_accuracy = testing_accuracies[max_accuracy_epoch]
-#
-#     if verbose:
-#         print("Max accuracy reached at epoch {}, with value: {:.3f}".format(max_accuracy_epoch, max_accuracy))
-#
-#     return max_accuracy, max_accuracy_epoch
 
 def train_and_test_from_indices(network, training_indices, testing_indices,
                                 loss_criterion, optimizer,
