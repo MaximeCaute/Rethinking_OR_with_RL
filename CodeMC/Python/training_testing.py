@@ -14,7 +14,7 @@ import data_images
 import policies
 import data_saver
 
-def get_input_data_tensor(situations_images, batch_indices = [], data_norm = True):
+def get_input_data_tensor(situations_images, batch_indices = [], data_norm = False):
     # Setting batch indices as whole set if not specified.
     if batch_indices == []:
         batch_indices = [i for i in range(len(situations_images))]
@@ -24,12 +24,10 @@ def get_input_data_tensor(situations_images, batch_indices = [], data_norm = Tru
 
     # Data normalization per channel
     if data_norm:
-        batch_size = input_array.shape[0]
         channels_amount = input_array.shape[1]
-        for b in range(batch_size):
-            for ch in range(channels_amount):
-                input_array[b,ch,:,:]-= np.mean(input_array[b, ch, :, :])
-                input_array[b,ch,:,:]/= np.std(input_array[b, ch, :, :])
+        for ch in range(channels_amount):
+            input_array[:,ch,:,:]-= np.mean(input_array[:, ch, :, :], axis = 0)
+            input_array[:,ch,:,:]/= np.std(input_array[:, ch, :, :], axis = 0)
 
     input_tensor = torch.tensor(input_array).type(torch.FloatTensor)
 
@@ -43,7 +41,7 @@ def get_output_data_tensor(assignements_images, batch_indices = []):
 
     return output_tensor
 
-def get_network_tensors(situations_images, assignements_images, batch_indices = [], data_norm = True):
+def get_network_tensors(situations_images, assignements_images, batch_indices = [], data_norm = False):
     input_tensor  = get_input_data_tensor (situations_images, batch_indices =batch_indices, data_norm = data_norm)
     output_tensor = get_output_data_tensor (assignements_images, batch_indices = batch_indices)
 
@@ -123,7 +121,7 @@ def compute_loss(loss_criterion, network_output_tensor, expert_output_tensor):
 def epoch_from_indices(network, indices,
                        loss_criterion, optimizer = None,
                        minibatch_size = 50, epochs_id = -1,
-                       data_norm = True):
+                       data_norm = False):
     """
     Test if optimizer is none, training otherwise
     """
@@ -238,7 +236,7 @@ def train_and_test_from_indices(network, training_indices, testing_indices,
         testing_losses.append(testing_loss)
 
         if verbose:
-            print("\rEpoch {}. Training Loss: {:.3f}, Training Accuracy: {:.3f}, Testing Loss: {:.3f}, Testing Accuracy: {:.3f} ".format(e, training_loss, training_accuracy, testing_loss, testing_accuracy))
+            print("\rEpoch {}. Training Loss: {:.3f}, Training Accuracy: {:.3f}, Testing Loss: {:.3f}, Testing Accuracy: {:.3f} ".format(e, training_loss, training_accuracy, testing_loss, testing_accuracy), flush = True)
         if training_accuracy > break_accuracy:
             epochs = range(e+1)
             break
