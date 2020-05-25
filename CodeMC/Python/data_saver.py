@@ -12,3 +12,6 @@ def save_table(table, index, folder='.', relative_path = ""):
 
 def load_table(index, folder='.', relative_path = ""):
     return np.load('./'+relative_path+folder+'/table_{}.pkl.npy'.format(index),allow_pickle = True)
+
+def save_model(index, folder = '.', relative_path = "", model_name = ""):
+    torch.save(model, './'+relative_path+folder+'/model_'+model_name+'.pth')
