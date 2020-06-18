@@ -159,7 +159,33 @@ def test_policy_tables(table, assignements_table, policy):
 if __name__ == "__main__":
     """
     Upon being executed, these file generates assignements from given indices.
-    # TO BE DONE!
-    """
+    ---
+    Several arguments can be added, see 'generate_assignements_from_indices'
+    description for more precision.
 
-    generate_assignements_from_indices(range(4000,8000), nearest_neighbour_policy, load_path = "NN_tables30/")
+    Call Example:
+    """
+    import argparse
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument("tables", type=int,
+                        help="Number of tables to be generated.")
+    parser.add_argument("-pol", "--policy", type=str,
+                        default="NN",
+                        choices =["NN","TC"],
+                        help="The policy to use for assignements."+
+                            "Possibles choices are "+
+                            "Nearest Neighbour (NN), and "+
+                            "Top Corner (TC) policies."+
+                            "Defaults to NN.")
+    parser.add_argument("-p", "--path", type=str,
+                        default="",
+                        help="The path where to save files. Defaults to local.")
+    args = parser.parse_args()
+
+    policy = (  nearest_neighbour_policy if args.policy == "NN" else
+                top_corner_policy )# if args.policy == "TC"
+
+    generate_assignements_from_indices(
+            range(args.tables), policy, load_path=args.path
+                )
