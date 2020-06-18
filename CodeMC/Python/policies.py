@@ -10,6 +10,7 @@ Upon being executed, this file generates assignement tables
 """
 import numpy as np
 import data_saver
+import data_generator
 
 def nearest_neighbour_policy(situation):
     """
@@ -29,25 +30,19 @@ def nearest_neighbour_policy(situation):
             The indices of the position of the vehicle closest to the request.
     """
     request = situation[0]
-
-    x_pickup, y_pickup = request[0], request[1]
-
+    pickup = request[:2]
     vehicles = situation[1:]
 
     # Setting minimal distance as an absurdly high value at beginning.
     min_distance = 10000
     best_location = (0,0)
     for vehicle in vehicles:
-        x_vehicle, y_vehicle = vehicle[0], vehicle[1]
-
-        # TODO Distance function ?
-        distance = np.sqrt( (x_vehicle - x_pickup)**2 +
-                            (y_vehicle - y_pickup)**2 )
+        vehicle_position = vehicle[:2]
+        distance = data_generator.distance(vehicle_position, pickup)
 
         if distance < min_distance:
             min_distance = distance
-            best_location = (x_vehicle, y_vehicle)
-
+            best_location = tuple(vehicle_position)
     return best_location
 
 def top_corner_policy(situation):
@@ -68,21 +63,19 @@ def top_corner_policy(situation):
             The indices of the position of the vehicle closest to
             the top left corner.
     """
-    x_corner, y_corner = 0,0
+    top_left_corner=(0,0)
 
     vehicles = situation[1:]
 
     min_distance = 10000
     best_location = (0,0)
     for vehicle in vehicles:
-        x_vehicle, y_vehicle = vehicle[0], vehicle[1]
-
-        distance = np.sqrt( (x_vehicle - x_corner)**2 +
-                            (y_vehicle - y_corner)**2 )
+        vehicle_position = vehicle[:2]
+        distance = data_generator.distance(vehicle_position, top_left_corner)
 
         if distance < min_distance:
             min_distance = distance
-            best_location = (x_vehicle, y_vehicle)
+            best_location = tuple(vehicle_position)
 
     return best_location
 
