@@ -1,0 +1,55 @@
+Trial 0
+Num parameters: 1090692	 Num Trainable parameters: 1090692
+Increasing lr from: 0.0005
+to: 0.0007
+
+Epoch 0. Training Loss: 66.494, Training Accuracy: 0.158, Testing Loss: 66.528, Testing Accuracy: 0.152 
+Epoch 1. Training Loss: 66.057, Training Accuracy: 0.202, Testing Loss: 66.030, Testing Accuracy: 0.202 
+Epoch 2. Training Loss: 65.723, Training Accuracy: 0.236, Testing Loss: 65.604, Testing Accuracy: 0.244 
+Epoch 3. Training Loss: 65.331, Training Accuracy: 0.272, Testing Loss: 65.339, Testing Accuracy: 0.274 
+Epoch 4. Training Loss: 64.969, Training Accuracy: 0.306, Testing Loss: 65.256, Testing Accuracy: 0.278 
+Epoch 5. Training Loss: 64.816, Training Accuracy: 0.324, Testing Loss: 65.002, Testing Accuracy: 0.306 
+Epoch 6. Training Loss: 64.639, Training Accuracy: 0.346, Testing Loss: 64.898, Testing Accuracy: 0.314 
+Epoch 7. Training Loss: 64.675, Training Accuracy: 0.340, Testing Loss: 64.738, Testing Accuracy: 0.332 
+Epoch 8. Training Loss: 64.362, Training Accuracy: 0.368, Testing Loss: 64.795, Testing Accuracy: 0.328 
+Epoch 9. Training Loss: 64.291, Training Accuracy: 0.374, Testing Loss: 64.598, Testing Accuracy: 0.346 
+Epoch 10. Training Loss: 64.244, Training Accuracy: 0.386, Testing Loss: 64.586, Testing Accuracy: 0.348 
+Epoch 11. Training Loss: 64.284, Training Accuracy: 0.376, Testing Loss: 64.626, Testing Accuracy: 0.342 
+Epoch 12. Training Loss: 64.164, Training Accuracy: 0.388, Testing Loss: 64.614, Testing Accuracy: 0.342 
+Epoch 13. Training Loss: 64.350, Training Accuracy: 0.370, Testing Loss: 64.560, Testing Accuracy: 0.350 
+Epoch 14. Training Loss: 64.163, Training Accuracy: 0.390, Testing Loss: 64.597, Testing Accuracy: 0.348 
+Epoch 15. Training Loss: 64.205, Training Accuracy: 0.384, Testing Loss: 64.836, Testing Accuracy: 0.322 
+Epoch 16. Training Loss: 64.102, Training Accuracy: 0.398, Testing Loss: 64.695, Testing Accuracy: 0.332 
+Epoch 17. Training Loss: 64.101, Training Accuracy: 0.396, Testing Loss: 64.525, Testing Accuracy: 0.354 
+Epoch 18. Training Loss: 64.040, Training Accuracy: 0.400, Testing Loss: 64.572, Testing Accuracy: 0.348 
+Epoch 19. Training Loss: 64.000, Training Accuracy: 0.406, Testing Loss: 64.565, Testing Accuracy: 0.348 
+Epoch 20. Training Loss: 63.901, Training Accuracy: 0.416, Testing Loss: 64.496, Testing Accuracy: 0.354 
+Epoch 21. Training Loss: 64.072, Training Accuracy: 0.398, Testing Loss: 64.670, Testing Accuracy: 0.338 
+Epoch 22. Training Loss: 64.020, Training Accuracy: 0.400, Testing Loss: 64.387, Testing Accuracy: 0.368 
+Epoch 23. Training Loss: 64.180, Training Accuracy: 0.388, Testing Loss: 64.408, Testing Accuracy: 0.364 
+Epoch 24. Training Loss: 63.880, Training Accuracy: 0.416, Testing Loss: 64.474, Testing Accuracy: 0.354 
+Epoch 25. Training Loss: 63.916, Training Accuracy: 0.412, Testing Loss: 64.465, Testing Accuracy: 0.358 
+Epoch 26. Training Loss: 63.713, Training Accuracy: 0.432, Testing Loss: 64.525, Testing Accuracy: 0.352 
+Epoch 27. Training Loss: 64.118, Training Accuracy: 0.390, Testing Loss: 64.455, Testing Accuracy: 0.358 
+Traceback (most recent call last):
+  File "test_script.py", line 56, in <module>
+    break_accuracy = 0.99, data_path = "NN_tables30/")
+  File "/media/maxime/DATA/Maxime/Documents/Scolarité/EPFL/Projet/Rethinking_OR_with_RL/CodeMC/Python/training_testing.py", line 161, in train_and_test_from_indices
+    data_path = data_path)
+  File "/media/maxime/DATA/Maxime/Documents/Scolarité/EPFL/Projet/Rethinking_OR_with_RL/CodeMC/Python/training_testing.py", line 107, in epoch_from_indices
+    network_output_tensor = network(input_tensor)
+  File "/home/maxime/anaconda3/envs/condenv/lib/python3.7/site-packages/torch/nn/modules/module.py", line 541, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/media/maxime/DATA/Maxime/Documents/Scolarité/EPFL/Projet/Rethinking_OR_with_RL/CodeMC/Python/monoloco_net.py", line 45, in forward
+    y = self.linear_stages[i](y)
+  File "/home/maxime/anaconda3/envs/condenv/lib/python3.7/site-packages/torch/nn/modules/module.py", line 541, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/media/maxime/DATA/Maxime/Documents/Scolarité/EPFL/Projet/Rethinking_OR_with_RL/CodeMC/Python/monoloco_net.py", line 72, in forward
+    y = self.batch_norm2(y)
+  File "/home/maxime/anaconda3/envs/condenv/lib/python3.7/site-packages/torch/nn/modules/module.py", line 541, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/maxime/anaconda3/envs/condenv/lib/python3.7/site-packages/torch/nn/modules/batchnorm.py", line 81, in forward
+    exponential_average_factor, self.eps)
+  File "/home/maxime/anaconda3/envs/condenv/lib/python3.7/site-packages/torch/nn/functional.py", line 1670, in batch_norm
+    training, momentum, eps, torch.backends.cudnn.enabled
+KeyboardInterrupt

@@ -2,6 +2,9 @@
 \usepackage[utf8]{inputenc}
 \usepackage{amssymb}
 \usepackage{cite}
+\usepackage{graphicx}
+\usepackage{subcaption}
+
 
 
 \title{Rethinking OR with RL}
@@ -9,12 +12,61 @@
 
 \begin{document}
 
+\maketitle
+
+\section*{Abstract}
+
+In this paper, we use deep learning to learn policies in delivery service problems. 
+We focus on the dynamic Dial-a-Ride Problem with nearest neighbour as a target policy.
+Our goal is to evaluate and explore the methods and architecture to replicate such a policy.
+To evaluate the performance of our network, we will mostly evaluate the accuracy of its selection compared to the policy, 
+but also evaluate its deviations from this policy.
+
 \section{Introduction}
+
+On the one hand, Operational Research (OR) is a long-time studied domain that has proved efficient in finding good solutions in complex problems through modelization. 
+On the other hand, Reinforcement Learning (RL) is a more recent field where (local) optimal solutions can be found on these same problems through interaction-based optimization.
+RL has thus been used to tackle several theoretical situations, formerly resolved with pure OR, with great success.
+Among them stand general Atari game-playing, resolved by deep model-free Q-learning \cite{Minh2015}, %todo
+control of robot motors, by end-to-end policy search through deep neural networks and search trees \cite{Levine2016}, %todo
+and go-playing, leading to a famous victory over a human expert, by a combination of strategic policies and RL search. \cite{Silver2016} %todo
+%Efficiency throuhg batch?
+
+As remarkable as they are, these feats fail to generalize to real world situations. %Add examples from DQLfD
+In fact, RL algorithms generally require large data sets and many optimization steps before displaying somewhat good results.
+The problems presented above came with accurate simulators, which are not to be found in real-world situations.
+In these cases, agents have to learn by interacting with the real world, with whatever potentially harmful consequences this might have.
+At this limitation of RL lies the interest of model-based OR, which can produce efficient policies without extensive trials.
+As both display noticeable advantages, combining them seems promising: %DQLfD
+a starting OR policy would ensure good enough results from the beginning while subsequent RL would locally improve this policy.
+Combination of OR and RL has thus recently been an increasing exploration ground.
+One of the most intuitive method relies on Imitation Learning (IL):
+with this method, neural networks are able to learn and replicate results from expert, OR policies.
+
+%A pioneer article in this field is %DqLfD -> Related works
+
+We propose here to evaluate the learning of OR policy in the context of the Dial-a-Ride Problem (DaRP). More specifically, we consider maps of DaRP situations and train our network to replicate an expert policy. The next step is to use RL from this trained network to get the benefits of RL. For this we use standard algorithms and architectures of deep IL and RL.
+
+\section{Background: The Dial-a-Ride Problem}
+
+The Dial-a-Ride Problem (DaRP) is a NP-hard problem part of the Vehicle Routing Problems (VRPs), where a fleet of agents (vehicles) has to be routed to achieve a set of deliveries. DaRP instances specify these deliveries as transportation services.
+This means that agents have to pickup customers from a certain point $A$ and get him brought to another point $B$. 
+While VRPs are traditionally linked to graphs, in real life DaRP instances often take place within dense transportation networks (e.g. cities), so that their pickup and delivery locations can be considered nodes of a grid $G$.
+Although agents can be modelled as mere points of the grid to code their location, further characteristics can be considered for them.
+Therefore, agents can be seen as a set of feature vectors $\textbf{v}$ located on this predefined grid. 
+The situation further involves a request made of a pickup and a delivery locations, with potential additional characteristics.
+We also specifically consider dynamic instances, 
+which means that requests are not known beforehand.
+This makes our problem especially difficult as there can not be any predetermined optimal solution.
+Computations thus have to be done and updated through the whole course of the issue.  
+%%% DATA repr below in $data set
+
+%\subsection{Deep learning}
 
 \section{Related Work}
 
 
-DaRPs have been extensively studied since its first formalization in 1986 by Jaw et al.\cite{jaw1986heuristic}, due to their application to industrial concerns.
+DaRPs have been extensively studied since their first formalization in 1986 by Jaw et al.\cite{jaw1986heuristic}, due to their application to industrial concerns.
 The first approaches have been focused on OR resolutions.
 An extensive 2018 review can be found in \cite{ho2018survey}.
 A deterministic, exact approach was first presented by Cordeau in 2006 \cite{cordeau2006branch}.
@@ -23,7 +75,8 @@ However, exact method suffer from the NP-Hardness of DaRP: their computation tim
 
 Many modern OR approches to tackle this problem are therefore now based on heuristics.
 
-In 2019, Claudia Bongiovanni et al. \cite{bongiovannilearning} proposed the policy which we will consider as 'optimal'.
+In 2019, Claudia Bongiovanni et al. \cite{bongiovannilearning} proposed a policy for electricity-powered vehicles. 
+This policy was slightly explored throughout the course of this work, but a much simpler one was considered in the end for exploration purposes.
 It relies on a two-phase insertion algorithm:
 the requests are, if possible, first assigned to the vehicle best able to respond to it through limited schedule reorganization (e.g. segments shifting);
 after a certain amount of new request, an optimization process is then started with intra- and extra-route modifications, for previously approved requests only.
@@ -73,6 +126,246 @@ image projection being likely responsible for a $25\%$ information loss.
 
 %Mention Bongiovanni
 %%%%%%%%%%%%%%%%%%%%
+
+\section{Experimental setup}
+\subsection{Data Representation}
+
+Our first concern was to depict our DaRP instances.
+As image processing is a well-explored and promising field in deep learning, we settled for image-like structures, similarly to building a situation map. 
+Instances have thus been represented as a $n\times n$-sized grid $G$.
+The cells of the grid represent nodes of the network (e.g. city crosses/neighborhoods, depending on the chosen resolution). 
+Like an image, our grid is composed of different channels to represent the relevant information of the situation. 
+
+
+% IMAGES FROM NOTEBOOK?
+
+The first channel $G_1$ is dedicated to the customer request. 
+Locations of interest (such as the pickup and delivery points) are represented by unique values on their respective cells while other unrelevant cells just share a single other value.
+Interestingly, further parameters can be introduced by changing the values accordingly: 
+the values of pickup and delivery might represent the number of passengers by their absolute value while unoccupied cells valuate $0$.
+For normalization purposes, we chose to represent pickup node by a $+1$ value and unoccupied nodes by $-1$ value. 
+Delivery location was in the end not represented as it is not relevant to our policies.
+
+
+Other channels are dedicated to vehicle information.
+For complex situations, it would probably be very relevant to use one channel or more per agent, as it would increase the description power of the map.
+However, we settled for a more simple model of one single channel for all the agents, as the situations we dealt with were rather simple.
+Therefore we have a second channel $G_2$ for the vehicles, where occupied cells are represented by a $+1$ value and unoccupied ones by $-1$ values, once again for normalization purposes.
+Supplementary information could be integrated such as the amount of vehicles in cases of overlapsing.
+However, our data set did not contain such cases.
+
+\begin{figure}
+\centering
+    \begin{subfigure}{.45\textwidth}
+        \centering
+        \includegraphics[scale=0.5]{ProjectRequestImage.png}
+		\subcaption{Request map}
+        \label{fig:reqMap}
+    \end{subfigure}
+    
+    \begin{subfigure}{.45\textwidth}
+        \centering
+        \includegraphics[scale=0.5]{ProjectFleetImage.png}
+    	\subcaption{Vehicle map}
+        \label{fig:vehMap}
+    \end{subfigure}
+\caption{Representation of the 2-channel situation map for $10 \times 10$ grid with $3$ agents} 
+\label{fig:exampleMap}
+\end{figure}
+
+A display of the images on a $10\times10$-sized example with a fleet of size $3$ can be observed in figure \ref{fig:exampleMap}
+
+
+\subsection{Data set}
+
+We generated a whole data set to train and test our network.
+To generate an example, we first generate a request by randomly selecting a pickup cell.
+Then we generate the vehicles fleet iteratively.
+Our aim is to have only one nearest neighbour at the end.
+In order to do this, we ensure that we only have one at all time, and generate a vehicle again if it is as close as the current nearest neighbour.
+Note that this is affects the structure of the data set somehow, although it is probably not harming our results by much.
+We also ensure that no vehicle overlaps by regenerating them in this case.
+The algorithm is described in \ref{?} %TODO
+
+With this generation algorithm, we did independantly generate 4.000.000 examples on a $30\times 30$ grid with $10$ agents.
+This number is highly correlated to the evolution of our results.
+
+
+We then generated the solutions to these examples that the network would have to replicate.
+We settled for the Nearest Neighbour (NN) policy for the network to learn, as this policy was rather simple, yet not trivial.
+We thus generated, for every example, its solution as the coordinates of the cell to select.
+
+$60\%$ of the test set was used for training, while the rest stood for performance evaluations.
+
+\subsection{Training and testing protocols}
+
+We evaluated the policy-learning ability of the network with a Python and PyTorch implementation.
+Given a chosen architecture, it would be given as input the 2-channels map of the situation and would be expected to ouput a 1-channel map on the basis of which a vehicle would be selected.
+
+This map is basically a score map for each cell, and the cell with the highest score ends up being the selected one.
+Note that the selected cell does not necessarily hold a vehicle in it.
+
+%Loss computation & backward prop.
+
+The learning rate was set at $5\times 10^4$ for baseline. 
+In order to refine the results, it has been decreased up to $1 \times  10^4$ at fixed epochs.
+Warm-up was also introduced for 20 epochs as a classical result-improvement method of the field.
+
+
+\section{Network architecture for policy learning}
+
+Our aim is to learn what (hopefully occupied) cell should be assigned to a given request from a situational map.
+We took inspiration from the Monoloco network for architecture. %source
+We performed our test on a network with 12 hidden, fully-connected layers of size 512 each. 
+Input layer was necessarily of size $ 2 \times (30\times 30) = 1800$ and output layer of size $(30\times 30) = 900$.
+Due to limited learning efficiency, we did further introduce 1-layer skip connection between odd-indexed layers.
+This amounts to a total of $2.966.916$ parameters.
+Several changes of parameters were also considered and studied throughout the course of our research, and will be described in the Results section.
+
+Convolutional layers were also considered as a link to image processing.
+However, as our NN policy was rather simple and as they seemed not much of interest on early trials, they were deemed non-necessary and left aside for the time being.
+
+\section{Results}
+\subsection{Evaluation methods}
+
+As mentionned before, we tested a Deep Learning approach to try to learn our NN policy in DaRP instances.
+We thus had to come up with methods for evaluation of the results.
+
+Our main evaluation is a basic accuracy evaluation of the output.
+In other words, the cell chosen by the network (as the cell with highest score on the output) is compared to the cell selected by our policy.
+The percentage of matching selections is then considered network accuracy, 
+and is computed separately on both training and testing data set.
+
+We also developped methods to gain better insight on the output.
+Our first auxiliary test is a vehicle selection accuracy.
+This means that we compute the percentage of the instances where a vehicle is actually selected.
+Our second auxiliary test is a mean distance evaluation.
+This means that we compute the average distance from the right cell.
+Note that both these computations are run on the whole training set (even on accurate responses).
+It is however possible to compute the value for inaccurate ones only,
+as the value is known for accurate ones.
+If $a$ is the main accuracy and $a_v$ the vehicle accuracy, 
+then the wrong vehicle accuracy is $a^\prime_v = \frac{a_v-a}{1-a}$.
+Similarily, if $m_d$ is the mean distance, the mean non-null distance is $m^\prime_d = \frac{m_d}{1-a}$.
+
+\subsection{Architecture results}
+
+Our experimental results for the Monoloco architecture can be observed in table \ref{Results:mainEvalTable}.
+
+
+\begin{table}[ht]
+
+\caption{Accuracy evaluation for the Monoloco architecture}
+	\centering
+	\begin{tabular}{|p{2.5cm}||p{1.5cm}|p{2cm}||p{2.5cm}||p{2.5cm}|  }
+	
+ 	\hline
+ 	Architecture ID & Layers & Layers Size & Parameters & Test accuracy\footnote{on NN policy}\\
+ 	\hline
+ 	$MNLC01$ & $6$ & $512$ & $2,966,916$  &   $67\%$\\
+ 	\hline
+ 	\hline 
+ 	$MNLC02$ & $6$	& $256$ & $1,090,692$ & $58\%$\footnote{\label{note1}Training not complete 	(either stuck or too long} \\
+ 	$MNLC03$ & $16$   & $128$ & $615,172$ & ONGOING \\
+ 	\hline
+ 	
+	\end{tabular}
+	\label{Results:mainEvalTable}
+\end{table}
+
+$MNLC02$ architecture got stuck at $60\%$ training accuracy. 
+As changing learning rates seems to have no effect on it 
+and seeing that the testing accuracy is very close, 
+our guess is that it actually lacks the ability to capture the structure of our problem.
+
+However, these architectures show promising results.
+They are in fact far better in comparison to random selection.
+A random vehicle selection, for a 10 vehicle fleet would lead to a probability $\frac{1}{10} = 10\%$ of choosing the right one.
+Even worse, a random cell selection for a $30\times 30$ grid would end up with $\frac{1}{30\times 30} = 0.33\%$ chance!
+
+Further auxiliary evaluations can be observed in table \ref{Results:auxEvalTable}.
+
+\begin{table}[ht]
+\caption{Auxiliary evaluations for the Monoloco architecture}
+	\centering
+	\begin{tabular}{|p{2.5cm}|p{2.5cm}||p{4cm}||p{3cm}|  }
+	
+ 	\hline
+ 	Architecture ID & Parameters & Vehicle selection accuracy & Mean distance \\
+ 	\hline
+ 	$MNLC01$ & $2,966,916$  &   $67\%$ & $N/A$\\
+ 	\hline
+ 	\hline 
+ 	$MNLC02$ & $1,090,692$ & $N/A$ & $N/A$ \\
+ 	$MNLC03$ & $615,172$ & $83\%$ & $5.11$\\
+ 	\hline
+ 	
+	\end{tabular}
+	\label{Results:auxEvalTable}
+\end{table}
+
+
+
+\subsection{Baseline comparison results}
+
+We compared those results to the one obtained with baseline comparison models.
+Those can be observed in table \ref {Baseline:mainEvalTable}
+
+
+\begin{table}[ht]
+
+\caption{Accuracy evaluation for the fully-connected architecture}
+	\centering
+	\begin{tabular}{|p{2.5cm}||p{1.5cm}|p{2cm}||p{2.5cm}||p{2.5cm}|  }
+	
+ 	\hline
+ 	Architecture ID & Layers & Layers Size & Parameters & Test accuracy\footnote{on NN policy}\\
+ 	\hline
+ 	$FC01$ & $1$ & $2000$ & $5,408,700$  &   $45\%$\\
+ 	$FC02$ & $3$	& $512$ & $1,913,996$ & $37\%$\\
+ 	$FC03$ & $6$   & $256$ & $1,026,188$ & $18\%$\footnote{\label{note1}Training not complete 	(either stuck or too long}\\
+ 	\hline
+ 	
+	\end{tabular}
+	\label{Baseline:mainEvalTable}
+\end{table}
+
+We compared our architecture to a fully connected one \emph{without} skip connections.
+We ran tests on such architecture, 
+although it has to be noted that only 500.000 examples were involved (a quarter of the total set)
+for computational and exploration purposes.
+\begin{itemize}
+
+\item Although $FC01$'s accuracy could be considered promising, 
+its number of parameters actually makes it a terrible choice due to long computational time.
+
+\item The absence of skip connections is logically impacting deeper architectures 
+such as $FC03$.
+The difference is here very significant with $MNLC02$: without skip connections, the results are more than 3 times worse!
+Therefore, in this problem, skip connections seems to be mandatory for a fully-connected architecture to learn accurately, 
+for a cheap computational cost (about $7\%$ more parameters).
+\end{itemize}
+
+Convolutional networks were also considered, but discarded after no real improvement on smaller data set due to time constraints.
+
+%\section{Discussion}
+
+
+
+\section{Conclusion}
+We did develop a framework to gain insight on policy-learning through deep learning in the case of the nearest neighbour for dynamic Dial-a-Ride Problems with map representation.
+Even though we evaluated our networks on simple situations and policies,
+reaching close-to-perfect accuracy seems to require a few designing tricks to avoid enormous computation times.
+While deep fully connected networks prove interesting in handling this,
+they seem to still require skip connections even at average depth.
+This ground exploration will most likely bear useful observations for more complex problems.
+A direct application of this is policy-improvement on dynamic DaRP instances, as our representation allows for much more complex situations through feature vectors.
+Using Reinforcement Learning after our policy-learning methods could likely lead to improved results.
+
+
+
+
+
 
 \bibliographystyle{unsrt}
 \bibliography{biblio}

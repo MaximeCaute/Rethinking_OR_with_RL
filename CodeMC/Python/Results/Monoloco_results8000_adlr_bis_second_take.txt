@@ -1,0 +1,157 @@
+Trial 0
+Num parameters: 1090692	 Num Trainable parameters: 1090692
+Increasing lr from: 0.0005
+to: 0.0007
+
+Epoch 0. Training Loss: 66.299, Training Accuracy: 0.174, Testing Loss: 66.564, Testing Accuracy: 0.148 
+Epoch 1. Training Loss: 65.869, Training Accuracy: 0.214, Testing Loss: 65.945, Testing Accuracy: 0.212 
+Epoch 2. Training Loss: 65.204, Training Accuracy: 0.286, Testing Loss: 65.526, Testing Accuracy: 0.256 
+Epoch 3. Training Loss: 64.989, Training Accuracy: 0.306, Testing Loss: 65.255, Testing Accuracy: 0.280 
+Epoch 4. Training Loss: 64.927, Training Accuracy: 0.310, Testing Loss: 65.031, Testing Accuracy: 0.306 
+Epoch 5. Training Loss: 64.699, Training Accuracy: 0.338, Testing Loss: 64.825, Testing Accuracy: 0.324 
+Epoch 6. Training Loss: 64.653, Training Accuracy: 0.344, Testing Loss: 64.853, Testing Accuracy: 0.320 
+Epoch 7. Training Loss: 64.728, Training Accuracy: 0.332, Testing Loss: 64.673, Testing Accuracy: 0.336 
+Epoch 8. Training Loss: 64.540, Training Accuracy: 0.354, Testing Loss: 64.662, Testing Accuracy: 0.336 
+Epoch 9. Training Loss: 64.450, Training Accuracy: 0.362, Testing Loss: 64.628, Testing Accuracy: 0.340 
+Decreasing lr from: 0.0007
+to: 0.0006
+
+Epoch 10. Training Loss: 64.409, Training Accuracy: 0.366, Testing Loss: 64.532, Testing Accuracy: 0.350 
+Epoch 11. Training Loss: 64.215, Training Accuracy: 0.380, Testing Loss: 64.682, Testing Accuracy: 0.340 
+Epoch 12. Training Loss: 64.414, Training Accuracy: 0.364, Testing Loss: 64.476, Testing Accuracy: 0.360 
+Epoch 13. Training Loss: 64.318, Training Accuracy: 0.372, Testing Loss: 64.451, Testing Accuracy: 0.362 
+Epoch 14. Training Loss: 64.251, Training Accuracy: 0.382, Testing Loss: 64.288, Testing Accuracy: 0.378 
+Epoch 15. Training Loss: 64.164, Training Accuracy: 0.388, Testing Loss: 64.456, Testing Accuracy: 0.356 
+Epoch 16. Training Loss: 64.019, Training Accuracy: 0.402, Testing Loss: 64.349, Testing Accuracy: 0.370 
+Epoch 17. Training Loss: 64.095, Training Accuracy: 0.396, Testing Loss: 64.147, Testing Accuracy: 0.390 
+Epoch 18. Training Loss: 64.037, Training Accuracy: 0.396, Testing Loss: 64.263, Testing Accuracy: 0.378 
+Epoch 19. Training Loss: 64.119, Training Accuracy: 0.394, Testing Loss: 64.181, Testing Accuracy: 0.386 
+Decreasing lr from: 0.0006
+to: 0.0004999999999999999
+
+Epoch 20. Training Loss: 63.977, Training Accuracy: 0.406, Testing Loss: 64.215, Testing Accuracy: 0.384 
+Epoch 21. Training Loss: 63.993, Training Accuracy: 0.406, Testing Loss: 64.033, Testing Accuracy: 0.400 
+Epoch 22. Training Loss: 64.039, Training Accuracy: 0.400, Testing Loss: 64.083, Testing Accuracy: 0.396 
+Epoch 23. Training Loss: 63.892, Training Accuracy: 0.414, Testing Loss: 64.047, Testing Accuracy: 0.400 
+Epoch 24. Training Loss: 63.935, Training Accuracy: 0.412, Testing Loss: 64.035, Testing Accuracy: 0.402 
+Epoch 25. Training Loss: 63.687, Training Accuracy: 0.436, Testing Loss: 63.978, Testing Accuracy: 0.408 
+Epoch 26. Training Loss: 63.692, Training Accuracy: 0.436, Testing Loss: 64.003, Testing Accuracy: 0.406 
+Epoch 27. Training Loss: 63.628, Training Accuracy: 0.440, Testing Loss: 64.021, Testing Accuracy: 0.402 
+Epoch 28. Training Loss: 63.820, Training Accuracy: 0.422, Testing Loss: 64.033, Testing Accuracy: 0.402 
+Epoch 29. Training Loss: 63.569, Training Accuracy: 0.450, Testing Loss: 63.967, Testing Accuracy: 0.408 
+Epoch 30. Training Loss: 63.714, Training Accuracy: 0.430, Testing Loss: 63.830, Testing Accuracy: 0.420 
+Epoch 31. Training Loss: 63.761, Training Accuracy: 0.426, Testing Loss: 63.934, Testing Accuracy: 0.408 
+Epoch 32. Training Loss: 63.526, Training Accuracy: 0.452, Testing Loss: 63.886, Testing Accuracy: 0.416 
+Epoch 33. Training Loss: 63.622, Training Accuracy: 0.444, Testing Loss: 63.966, Testing Accuracy: 0.410 
+Epoch 34. Training Loss: 63.555, Training Accuracy: 0.448, Testing Loss: 63.916, Testing Accuracy: 0.412 
+Epoch 35. Training Loss: 63.369, Training Accuracy: 0.472, Testing Loss: 63.999, Testing Accuracy: 0.408 
+Epoch 36. Training Loss: 63.405, Training Accuracy: 0.462, Testing Loss: 63.950, Testing Accuracy: 0.410 
+Epoch 37. Training Loss: 63.178, Training Accuracy: 0.488, Testing Loss: 63.842, Testing Accuracy: 0.420 
+Epoch 38. Training Loss: 63.334, Training Accuracy: 0.472, Testing Loss: 63.635, Testing Accuracy: 0.442 
+Epoch 39. Training Loss: 63.324, Training Accuracy: 0.470, Testing Loss: 63.544, Testing Accuracy: 0.452 
+Epoch 40. Training Loss: 63.296, Training Accuracy: 0.474, Testing Loss: 63.641, Testing Accuracy: 0.444 
+Epoch 41. Training Loss: 63.227, Training Accuracy: 0.486, Testing Loss: 63.591, Testing Accuracy: 0.448 
+Epoch 42. Training Loss: 63.361, Training Accuracy: 0.468, Testing Loss: 63.617, Testing Accuracy: 0.446 
+Epoch 43. Training Loss: 63.352, Training Accuracy: 0.468, Testing Loss: 63.829, Testing Accuracy: 0.422 
+Epoch 44. Training Loss: 63.254, Training Accuracy: 0.478, Testing Loss: 63.555, Testing Accuracy: 0.452 
+Epoch 45. Training Loss: 63.271, Training Accuracy: 0.478, Testing Loss: 63.768, Testing Accuracy: 0.426 
+Epoch 46. Training Loss: 63.163, Training Accuracy: 0.486, Testing Loss: 63.698, Testing Accuracy: 0.436 
+Epoch 47. Training Loss: 63.192, Training Accuracy: 0.486, Testing Loss: 63.609, Testing Accuracy: 0.444 
+Epoch 48. Training Loss: 63.215, Training Accuracy: 0.484, Testing Loss: 63.663, Testing Accuracy: 0.436 
+Epoch 49. Training Loss: 62.879, Training Accuracy: 0.516, Testing Loss: 63.430, Testing Accuracy: 0.462 
+Epoch 50. Training Loss: 63.127, Training Accuracy: 0.494, Testing Loss: 63.371, Testing Accuracy: 0.470 
+Epoch 51. Training Loss: 62.947, Training Accuracy: 0.510, Testing Loss: 63.351, Testing Accuracy: 0.470 
+Epoch 52. Training Loss: 62.926, Training Accuracy: 0.512, Testing Loss: 63.404, Testing Accuracy: 0.464 
+Epoch 53. Training Loss: 62.956, Training Accuracy: 0.508, Testing Loss: 63.317, Testing Accuracy: 0.476 
+Epoch 54. Training Loss: 62.907, Training Accuracy: 0.516, Testing Loss: 63.330, Testing Accuracy: 0.474 
+Epoch 55. Training Loss: 62.988, Training Accuracy: 0.506, Testing Loss: 63.343, Testing Accuracy: 0.472 
+Epoch 56. Training Loss: 62.821, Training Accuracy: 0.524, Testing Loss: 63.477, Testing Accuracy: 0.456 
+Epoch 57. Training Loss: 62.794, Training Accuracy: 0.526, Testing Loss: 63.301, Testing Accuracy: 0.474 
+Epoch 58. Training Loss: 62.837, Training Accuracy: 0.522, Testing Loss: 63.261, Testing Accuracy: 0.478 
+Epoch 59. Training Loss: 62.931, Training Accuracy: 0.512, Testing Loss: 63.321, Testing Accuracy: 0.472 
+Epoch 60. Training Loss: 62.925, Training Accuracy: 0.510, Testing Loss: 63.377, Testing Accuracy: 0.466 
+Epoch 61. Training Loss: 62.801, Training Accuracy: 0.526, Testing Loss: 63.222, Testing Accuracy: 0.486 
+Epoch 62. Training Loss: 62.779, Training Accuracy: 0.528, Testing Loss: 63.204, Testing Accuracy: 0.486 
+Epoch 63. Training Loss: 62.909, Training Accuracy: 0.514, Testing Loss: 63.202, Testing Accuracy: 0.484 
+Epoch 64. Training Loss: 62.905, Training Accuracy: 0.514, Testing Loss: 63.181, Testing Accuracy: 0.486 
+Epoch 65. Training Loss: 62.992, Training Accuracy: 0.504, Testing Loss: 63.236, Testing Accuracy: 0.482 
+Epoch 66. Training Loss: 62.787, Training Accuracy: 0.524, Testing Loss: 63.090, Testing Accuracy: 0.496 
+Epoch 67. Training Loss: 62.918, Training Accuracy: 0.512, Testing Loss: 63.155, Testing Accuracy: 0.486 
+Epoch 68. Training Loss: 62.694, Training Accuracy: 0.536, Testing Loss: 63.242, Testing Accuracy: 0.476 
+Epoch 69. Training Loss: 62.812, Training Accuracy: 0.524, Testing Loss: 63.034, Testing Accuracy: 0.502 
+Epoch 70. Training Loss: 62.913, Training Accuracy: 0.510, Testing Loss: 63.317, Testing Accuracy: 0.472 
+Epoch 71. Training Loss: 62.643, Training Accuracy: 0.542, Testing Loss: 63.156, Testing Accuracy: 0.490 
+Epoch 72. Training Loss: 62.727, Training Accuracy: 0.532, Testing Loss: 63.161, Testing Accuracy: 0.490 
+Epoch 73. Training Loss: 62.655, Training Accuracy: 0.540, Testing Loss: 63.029, Testing Accuracy: 0.504 
+Epoch 74. Training Loss: 62.634, Training Accuracy: 0.544, Testing Loss: 63.153, Testing Accuracy: 0.490 
+Epoch 75. Training Loss: 62.808, Training Accuracy: 0.524, Testing Loss: 63.164, Testing Accuracy: 0.488 
+Epoch 76. Training Loss: 62.588, Training Accuracy: 0.546, Testing Loss: 63.253, Testing Accuracy: 0.480 
+Epoch 77. Training Loss: 62.726, Training Accuracy: 0.534, Testing Loss: 63.071, Testing Accuracy: 0.500 
+Epoch 78. Training Loss: 62.856, Training Accuracy: 0.518, Testing Loss: 63.130, Testing Accuracy: 0.492 
+Epoch 79. Training Loss: 62.708, Training Accuracy: 0.532, Testing Loss: 63.047, Testing Accuracy: 0.500 
+Epoch 80. Training Loss: 62.558, Training Accuracy: 0.548, Testing Loss: 63.034, Testing Accuracy: 0.502 
+Epoch 81. Training Loss: 62.681, Training Accuracy: 0.538, Testing Loss: 63.182, Testing Accuracy: 0.484 
+Epoch 82. Training Loss: 62.675, Training Accuracy: 0.536, Testing Loss: 62.997, Testing Accuracy: 0.504 
+Epoch 83. Training Loss: 62.695, Training Accuracy: 0.536, Testing Loss: 63.100, Testing Accuracy: 0.494 
+Epoch 84. Training Loss: 62.556, Training Accuracy: 0.546, Testing Loss: 63.079, Testing Accuracy: 0.498 
+Epoch 85. Training Loss: 62.601, Training Accuracy: 0.546, Testing Loss: 63.071, Testing Accuracy: 0.498 
+Epoch 86. Training Loss: 62.534, Training Accuracy: 0.552, Testing Loss: 62.957, Testing Accuracy: 0.510 
+Epoch 87. Training Loss: 62.710, Training Accuracy: 0.532, Testing Loss: 62.863, Testing Accuracy: 0.518 
+Epoch 88. Training Loss: 62.558, Training Accuracy: 0.552, Testing Loss: 62.904, Testing Accuracy: 0.516 
+Epoch 89. Training Loss: 62.623, Training Accuracy: 0.542, Testing Loss: 62.951, Testing Accuracy: 0.512 
+Epoch 90. Training Loss: 62.712, Training Accuracy: 0.532, Testing Loss: 62.983, Testing Accuracy: 0.504 
+Epoch 91. Training Loss: 62.545, Training Accuracy: 0.550, Testing Loss: 62.881, Testing Accuracy: 0.514 
+Epoch 92. Training Loss: 62.471, Training Accuracy: 0.560, Testing Loss: 62.917, Testing Accuracy: 0.512 
+Epoch 93. Training Loss: 62.593, Training Accuracy: 0.546, Testing Loss: 62.802, Testing Accuracy: 0.524 
+Epoch 94. Training Loss: 62.436, Training Accuracy: 0.558, Testing Loss: 62.910, Testing Accuracy: 0.514 
+Epoch 95. Training Loss: 62.635, Training Accuracy: 0.538, Testing Loss: 62.846, Testing Accuracy: 0.516 
+Epoch 96. Training Loss: 62.465, Training Accuracy: 0.558, Testing Loss: 62.664, Testing Accuracy: 0.542 
+Epoch 97. Training Loss: 62.514, Training Accuracy: 0.556, Testing Loss: 62.811, Testing Accuracy: 0.524 
+Epoch 98. Training Loss: 62.305, Training Accuracy: 0.574, Testing Loss: 62.635, Testing Accuracy: 0.542 
+Epoch 99. Training Loss: 62.553, Training Accuracy: 0.548, Testing Loss: 62.770, Testing Accuracy: 0.526 
+Epoch 100. Training Loss: 62.526, Training Accuracy: 0.552, Testing Loss: 62.725, Testing Accuracy: 0.532 
+Epoch 101. Training Loss: 62.317, Training Accuracy: 0.572, Testing Loss: 62.681, Testing Accuracy: 0.534 
+Epoch 102. Training Loss: 62.464, Training Accuracy: 0.560, Testing Loss: 62.646, Testing Accuracy: 0.540 
+Epoch 103. Training Loss: 62.478, Training Accuracy: 0.556, Testing Loss: 62.729, Testing Accuracy: 0.530 
+Epoch 104. Training Loss: 62.516, Training Accuracy: 0.554, Testing Loss: 62.746, Testing Accuracy: 0.532 
+Epoch 105. Training Loss: 62.565, Training Accuracy: 0.548, Testing Loss: 62.681, Testing Accuracy: 0.532 
+Epoch 106. Training Loss: 62.372, Training Accuracy: 0.566, Testing Loss: 62.775, Testing Accuracy: 0.524 
+Epoch 107. Training Loss: 62.678, Training Accuracy: 0.536, Testing Loss: 62.657, Testing Accuracy: 0.542 
+Epoch 108. Training Loss: 62.390, Training Accuracy: 0.566, Testing Loss: 62.801, Testing Accuracy: 0.526 
+Epoch 109. Training Loss: 62.336, Training Accuracy: 0.570, Testing Loss: 62.750, Testing Accuracy: 0.532 
+Epoch 110. Training Loss: 62.417, Training Accuracy: 0.564, Testing Loss: 62.781, Testing Accuracy: 0.526 
+Epoch 111. Training Loss: 62.522, Training Accuracy: 0.550, Testing Loss: 62.744, Testing Accuracy: 0.530 
+Epoch 112. Training Loss: 62.404, Training Accuracy: 0.562, Testing Loss: 62.807, Testing Accuracy: 0.522 
+Epoch 113. Training Loss: 62.564, Training Accuracy: 0.546, Testing Loss: 62.803, Testing Accuracy: 0.526 
+Epoch 114. Training Loss: 62.640, Training Accuracy: 0.540, Testing Loss: 62.527, Testing Accuracy: 0.552 
+Epoch 115. Training Loss: 62.362, Training Accuracy: 0.568, Testing Loss: 62.445, Testing Accuracy: 0.558 
+Epoch 116. Training Loss: 62.453, Training Accuracy: 0.558, Testing Loss: 62.508, Testing Accuracy: 0.552 
+Epoch 117. Training Loss: 62.363, Training Accuracy: 0.568, Testing Loss: 62.696, Testing Accuracy: 0.534 
+Epoch 118. Training Loss: 62.238, Training Accuracy: 0.582, Testing Loss: 62.673, Testing Accuracy: 0.536 
+Epoch 119. Training Loss: 62.196, Training Accuracy: 0.588, Testing Loss: 62.641, Testing Accuracy: 0.538 
+Epoch 120. Training Loss: 62.283, Training Accuracy: 0.576, Testing Loss: 62.748, Testing Accuracy: 0.532 
+Epoch 121. Training Loss: 62.200, Training Accuracy: 0.586, Testing Loss: 62.298, Testing Accuracy: 0.576 
+Epoch 122. Training Loss: 62.165, Training Accuracy: 0.588, Testing Loss: 62.446, Testing Accuracy: 0.562 
+Epoch 123. Training Loss: 62.217, Training Accuracy: 0.582, Testing Loss: 62.405, Testing Accuracy: 0.564 
+Epoch 124. Training Loss: 62.306, Training Accuracy: 0.574, Testing Loss: 62.431, Testing Accuracy: 0.562 
+Epoch 125. Training Loss: 62.388, Training Accuracy: 0.566, Testing Loss: 62.457, Testing Accuracy: 0.558 
+Epoch 126. Training Loss: 62.234, Training Accuracy: 0.580, Testing Loss: 62.394, Testing Accuracy: 0.566 
+Epoch 127. Training Loss: 62.275, Training Accuracy: 0.576, Testing Loss: 62.463, Testing Accuracy: 0.560 
+Epoch 128. Training Loss: 62.114, Training Accuracy: 0.592, Testing Loss: 62.426, Testing Accuracy: 0.558 
+Epoch 129. Training Loss: 62.315, Training Accuracy: 0.576, Testing Loss: 62.440, Testing Accuracy: 0.562 
+Epoch 130. Training Loss: 62.205, Training Accuracy: 0.586, Testing Loss: 62.498, Testing Accuracy: 0.556 
+Epoch 131. Training Loss: 62.116, Training Accuracy: 0.592, Testing Loss: 62.368, Testing Accuracy: 0.568 
+Epoch 132. Training Loss: 61.996, Training Accuracy: 0.606, Testing Loss: 62.464, Testing Accuracy: 0.558 
+Epoch 133. Training Loss: 62.226, Training Accuracy: 0.584, Testing Loss: 62.507, Testing Accuracy: 0.552 
+Epoch 134. Training Loss: 62.016, Training Accuracy: 0.606, Testing Loss: 62.459, Testing Accuracy: 0.560 
+Epoch 135. Training Loss: 62.068, Training Accuracy: 0.598, Testing Loss: 62.374, Testing Accuracy: 0.566 
+Epoch 136. Training Loss: 61.996, Training Accuracy: 0.606, Testing Loss: 62.230, Testing Accuracy: 0.580 
+Epoch 137. Training Loss: 62.068, Training Accuracy: 0.596, Testing Loss: 62.410, Testing Accuracy: 0.562 
+Epoch 138. Training Loss: 61.987, Training Accuracy: 0.604, Testing Loss: 62.430, Testing Accuracy: 0.562 
+Epoch 139. Training Loss: 62.039, Training Accuracy: 0.602, Testing Loss: 62.363, Testing Accuracy: 0.568 
+Epoch 140. Training Loss: 62.106, Training Accuracy: 0.592, Testing Loss: 62.432, Testing Accuracy: 0.566 
+Epoch 141. Training Loss: 62.065, Training Accuracy: 0.598, Testing Loss: 62.245, Testing Accuracy: 0.582 
+Epoch 142. Training Loss: 62.053, Training Accuracy: 0.598, Testing Loss: 62.228, Testing Accuracy: 0.580 
+Epoch 143. Training Loss: 62.075, Training Accuracy: 0.602, Testing Loss: 62.192, Testing Accuracy: 0.584 
+Epoch 144. Training Loss: 62.159, Training Accuracy: 0.590, Testing Loss: 62.282, Testing Accuracy: 0.578 
+Epoch 145. Training Loss: 62.131, Training Accuracy: 0.594, Testing Loss: 62.093, Testing Accuracy: 0.596 

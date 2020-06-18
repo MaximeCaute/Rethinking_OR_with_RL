@@ -123,3 +123,68 @@ __________________
 #### Code
 - Test network on simple, deterministic policies(e.g nearest neighbour)
 - Generate new data with time-windows
+
+__________________
+# April 8th 2020
+
+### DONE
+
+#### Code
+- Tested network on numerous policies with different architectures
+
+### TODO
+
+#### Code
+- Reimplement training and testing from scratch
+- Try out several architectures on basic
+
+__________________
+# April 15th 2020
+
+### DONE
+
+#### Code
+- Reimplemented training and testing from scratch
+
+#### Experiments
+- Tested simple networks on Top Corner and Nearest Neighbour Policy
+
+### TODO
+
+#### Experiments
+- Fine tune accuracy results on larger images
+- Look for Atari games learning networks
+
+__________________
+# April 22nd 2020
+
+### DONE
+
+#### Code
+- Implemented AtariNet
+- Implemented training curves studies
+
+#### Experiments
+- Identified effective learning rate
+
+### TODO
+
+#### Experiments
+- Fine tune accuracy results
+  - Identify most important parameters (e.g. learning rate)
+  - Try much larger data sets
+  - Try data normalization
+  - Try replacing zeros in images
+
+__________________
+# April 29st 2020
+
+### DONE
+
+#### Experiments
+- Image changes
+
+### TODO
+
+#### Code
+- Remove dropoff.

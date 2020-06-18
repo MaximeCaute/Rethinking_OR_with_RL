@@ -1,6 +1,6 @@
 """
 Date: 13/04/2020
-Last Modification: 13/04/2020
+Last Modification: 18/06/2020
 Author: Maxime Cauté (maxime.caute@epfl.ch)
 ---
 The classes in this file are used to define our networks.
@@ -9,41 +9,8 @@ The classes in this file are used to define our networks.
 import torch
 import torch.nn as nn
 
-class TriviaNet(nn.Module):
-    def __init__(self, channels_amount,image_size, hidden_layer_size = 80 ):
-        super().__init__()
-
-        self.image_size = image_size
-        self.channels_amount = channels_amount
-
-        channel_pixels = image_size**2
-        total_pixels = channels_amount*channel_pixels
-
-        self.lin1 = nn.Sequential(
-            nn.Linear(total_pixels, hidden_layer_size ),
-            nn.BatchNorm1d(hidden_layer_size),
-            nn.ReLU(),
-        )
-
-        self.lin2 = nn.Sequential(
-            nn.Linear(hidden_layer_size, channel_pixels),
-            nn.BatchNorm1d(channel_pixels),
-        )
-
-    def forward(self, x):
-
-        channel_pixels = self.image_size**2
-        total_pixels = self.channels_amount*channel_pixels
-
-        x = x.view(-1, total_pixels)
-        x = self.lin1(x)
-        x = self.lin2(x)
-        x = x.view(-1, self.image_size, self.image_size)
-
-        return x
-
 class MultiTriviaNet(nn.Module):
-    def __init__(self, channels_amount,image_size, hidden_layers_amount = 1,hidden_layer_size = 80 ):
+    def __init__(self, channels_amount,image_size, hidden_layers_amount = 1,hidden_layer_size = 80):
         super().__init__()
 
         self.image_size = image_size
@@ -58,15 +25,14 @@ class MultiTriviaNet(nn.Module):
             nn.ReLU(),
         )
 
-        self.hids = [
+        self.hids = nn.ModuleList([
             nn.Sequential(
                 nn.Linear(hidden_layer_size, hidden_layer_size),
                 nn.BatchNorm1d(hidden_layer_size),
                 nn.ReLU(),
             )
             for i in range(hidden_layers_amount-1)
-        ]
-
+        ])
 
         self.lin2 = nn.Sequential(
             nn.Linear(hidden_layer_size, channel_pixels),
@@ -91,114 +57,6 @@ class MultiTriviaNet(nn.Module):
         return x
 
 
-class ConvTriviaNet(nn.Module):
-    def __init__(self, channels_amount,image_size, reduced_channels_amount = 1, kernel_size = 3,hidden_layer_expansion = 2, hidden_layer_size = -1 ):
-        super().__init__()
-
-        self.image_size = image_size
-        self.channels_amount = channels_amount
-        self.kernel_size = kernel_size
-        self.reduced_channels_amount = reduced_channels_amount
-
-        channel_pixels = image_size**2
-        total_pixels = channels_amount*channel_pixels
-        if hidden_layer_size == -1:
-            hidden_layer_size = total_pixels**hidden_layer_expansion
-
-        reduced_channel_pixels = (image_size - (self.kernel_size-1))**2
-        reduced_total_pixels = self.reduced_channels_amount*reduced_channel_pixels
-
-        self.conv1 = nn.Sequential(
-                nn.Conv2d(self.channels_amount, self.reduced_channels_amount, self.kernel_size),
-                nn.BatchNorm2d(self.reduced_channels_amount),
-                nn.ReLU(),
-            )
-
-
-        self.lin1 = nn.Sequential(
-            nn.Linear(reduced_total_pixels, hidden_layer_size),
-            nn.BatchNorm1d(hidden_layer_size),
-            nn.ReLU(),
-        )
-
-        self.lin2 = nn.Sequential(
-            nn.Linear(hidden_layer_size, channel_pixels),
-            nn.BatchNorm1d(channel_pixels),
-        )
-    def forward(self, x):
-
-        x = self.conv1(x)
-
-        reduced_channel_pixels = (self.image_size-(self.kernel_size-1))**2
-        reduced_total_pixels = self.reduced_channels_amount*reduced_channel_pixels
-
-        x = x.view(-1, reduced_total_pixels)
-        x = self.lin1(x)
-        x = self.lin2(x)
-        x = x.view(-1, self.image_size, self.image_size)
-
-        return x
-
-class MultiConvNet(nn.Module):
-    def __init__(self, channels_amount, image_size,
-                 reduced_channels_amount = 1,
-                 conv_layers_amount = 1, kernel_size = 3,
-                 hidden_layer_size = 80):
-        super().__init__()
-
-        self.image_size = image_size
-        self.channels_amount = channels_amount
-        self.kernel_size = kernel_size
-        self.reduced_channels_amount = reduced_channels_amount
-        self.conv_layers_amount = conv_layers_amount
-
-        channel_pixels = image_size**2
-        total_pixels = channels_amount*channel_pixels
-
-        reduced_channel_pixels = (image_size -self.conv_layers_amount * (self.kernel_size-1))**2
-        reduced_total_pixels = self.reduced_channels_amount*reduced_channel_pixels
-
-        self.conv1 = nn.Sequential(
-                nn.Conv2d(self.channels_amount, self.reduced_channels_amount, self.kernel_size),
-                nn.BatchNorm2d(self.reduced_channels_amount),
-                nn.ReLU(),
-            )
-
-        self.convs = [
-            nn.Sequential(
-                nn.Conv2d(self.reduced_channels_amount, self.reduced_channels_amount, self.kernel_size),
-                nn.BatchNorm2d(self.reduced_channels_amount),
-                nn.ReLU(),
-            )
-            for i in range(conv_layers_amount-1)
-        ]
-
-
-        self.lin1 = nn.Sequential(
-            nn.Linear(reduced_total_pixels, hidden_layer_size),
-            nn.BatchNorm1d(hidden_layer_size),
-            nn.ReLU(),
-        )
-
-        self.lin2 = nn.Sequential(
-            nn.Linear(hidden_layer_size, channel_pixels),
-            nn.BatchNorm1d(channel_pixels),
-        )
-    def forward(self, x):
-
-        x = self.conv1(x)
-        for c in self.convs:
-            x = c(x)
-
-        reduced_channel_pixels = (self.image_size-self.conv_layers_amount*(self.kernel_size-1))**2
-        reduced_total_pixels = self.reduced_channels_amount*reduced_channel_pixels
-
-        x = x.view(-1, reduced_total_pixels)
-        x = self.lin1(x)
-        x = self.lin2(x)
-        x = x.view(-1, self.image_size, self.image_size)
-
-        return x
 
 class AtariNet(nn.Module):
     def __init__(self, channels_amount, image_size,
@@ -243,6 +101,40 @@ class AtariNet(nn.Module):
         x = self.conv2(x)
 
         x = x.view(-1, self.linear_input_size)
+        x = self.lin1(x)
+        x = self.lin2(x)
+        x = x.view(-1, self.image_size, self.image_size)
+
+        return x
+
+class Net(nn.Module):
+    def __init__(self):
+        super().__init__()
+
+        self.image_size = 30
+        self.channels_amount = 2
+
+        channel_pixels = self.image_size**2
+        total_pixels = self.channels_amount*channel_pixels
+
+        self.lin1 = nn.Sequential(
+            nn.Linear(total_pixels, 2000 ),
+            nn.BatchNorm1d(2000),
+            #nn.Dropout(0.33), # Limiting a too high weight of 1 neuron
+            nn.ReLU(),
+        )
+
+        self.lin2 = nn.Sequential(
+            nn.Linear(2000,channel_pixels),
+            nn.BatchNorm1d(channel_pixels),
+        )
+
+    def forward(self, x):
+
+        channel_pixels = self.image_size**2
+        total_pixels = self.channels_amount*channel_pixels
+
+        x = x.view(-1, total_pixels)
         x = self.lin1(x)
         x = self.lin2(x)
         x = x.view(-1, self.image_size, self.image_size)
