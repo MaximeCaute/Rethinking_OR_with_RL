@@ -347,6 +347,7 @@ def test(table, a_table, multiple_nns = False, fleet_size = 30):
 if __name__ == "__main__":
     """
     Upon being executed, generates a set of tables.
+    ---
     Several arguments can be added, see 'generate_tables' description
     for more precision.
 
@@ -384,4 +385,4 @@ if __name__ == "__main__":
                     vehicle_overlaps = args.vehicles_overlaps,
                     multiple_nearest = args.multiple_nearest,
                     reference_for_nearest = args.reference_for_nearest,
-                    save = True, save_path = args.path)#"NN_tables30/"
+                    save = True, save_path = args.path)
