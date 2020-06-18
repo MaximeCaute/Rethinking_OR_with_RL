@@ -285,6 +285,7 @@ if __name__ == "__main__":
     Several arguments can be added, see 'train_and_test_from_indices'
     description for more precision.
     Learning rate can also be set with -lr.
+    Networks parameters can also be specified, see their definitions.
 
     Call example:
         python3 training_testing.py 10 30
