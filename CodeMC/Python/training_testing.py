@@ -138,11 +138,13 @@ def epoch_from_indices(network, indices,
 
 
 def train_and_test_from_indices(network, training_indices, testing_indices,
-                                loss_criterion, optimizer, quick_start = True,
+                                loss_criterion, optimizer,
                                 epochs_amount = 100, minibatch_size = 50,
                                 verbose = False, learning_curve = False,
                                 break_accuracy = 1.2, data_norm = False,
-                                data_path = "", start_epoch = 0):
+                                data_path = "", start_epoch = 0,
+                                warmup_time=0, adaptative_lr = {},
+                                eval_frequency=0):
     """
     This function handles the whole training and testing of a network.
     ---
@@ -179,6 +181,17 @@ def train_and_test_from_indices(network, training_indices, testing_indices,
         - start_epoch: int.
             The epoch at which the training starts.
                 If not 0, model saved at this epoch is loaded.
+        - warmup_time: int.
+            The number of epoch dedicated to warm-up
+            (linear augmentation of the learning rate).
+                Defaults to no warm-up.
+        - adaptative_lr: int->float dict.
+            A dictionnary of fixed-epoch variations of the learning rate.
+                The keys are the epochs indices.
+        - eval_frequency: int.
+            The frequency in epochs for the network evaluation and save.
+                Value zero deactivates saves and evaluation.
+                Defaults to deactivated.
     Output:
         - max_accuracy: float.
             The maximal testing accuracy hit by the network.
@@ -195,53 +208,59 @@ def train_and_test_from_indices(network, training_indices, testing_indices,
     if start_epoch!=0:
         network = data_saver.load_model(str(start_epoch-1), folder = "Models", relative_path = "./")
 
-    # Learning rate handling.
-    if quick_start and start_epoch==0:
-        print("Increasing lr from: "+str(optimizer.param_groups[0]['lr']))
-        for g in optimizer.param_groups:
-            g['lr']+=0.0002
-        print("to: "+str(g['lr'])+"\n", flush=True)
-
     for e in epochs:
+        # Learning rate handling.
         g = optimizer.param_groups[0]
-        if e == 10 and quick_start:
-            print("Decreasing lr from: "+str(g['lr']))
+        lr = g['lr']
+        # Warm-up
+        warmup_time = 0
+        if e < warmup_time:
             for g in optimizer.param_groups:
-                g['lr']-=0.0001
-            print("to: "+str(g['lr'])+"\n", flush=True)
-        if e == 20 and quick_start:
-            print("Decreasing lr from: "+str(g['lr']))
+                    g['lr'] = lr*(e+1)/20
+            if verbose:
+                txt = ("Warming up to learning rate: {}. "+
+                "Current learning rate is {}.")
+                print(txt.format(lr, g['lr']), flush=True)
+        if e in adaptative_lr.keys():
             for g in optimizer.param_groups:
-                g['lr']-=0.0001
-            print("to: "+str(g['lr'])+"\n", flush=True)
-        if e == 100:
-            print("Decreasing lr from: "+str(g['lr']))
-            for g in optimizer.param_groups:
-                g['lr']-=0.0002
-            print("to: "+str(g['lr'])+"\n", flush=True)
-        if e == 150:
-            print("Decreasing lr from: "+str(g['lr']))
-            for g in optimizer.param_groups:
-                g['lr']-=0.0002
-            print("to: "+str(g['lr'])+"\n", flush=True)
+                    g['lr'] = adaptative_lr[e]
+            if verbose:
+                txt ="Updating learning rate from {} to {}."
+                print(txt.format(lr,g['lr']), flush=True)
 
-        training_loss, training_epoch_accuracies = epoch_from_indices(network, training_indices,
-                                                             loss_criterion, optimizer = optimizer,
-                                                             minibatch_size = minibatch_size,
-                                                             epochs_id = e, data_norm = data_norm,
-                                                             data_path = data_path)
-        testing_loss, testing_epoch_accuracies =   epoch_from_indices(network, testing_indices,
-                                                             loss_criterion, optimizer = None,
-                                                             minibatch_size = minibatch_size,
-                                                             epochs_id = e, data_norm = data_norm,
-                                                             data_path = data_path)
+        training_loss, training_epoch_accuracies = epoch_from_indices(
+                                        network, training_indices,
+                                        loss_criterion, optimizer = optimizer,
+                                        minibatch_size = minibatch_size,
+                                        epochs_id = e, data_norm = data_norm,
+                                        data_path = data_path)
+        testing_loss, testing_epoch_accuracies =   epoch_from_indices(
+                                        network, testing_indices,
+                                        loss_criterion, optimizer = None,
+                                        minibatch_size = minibatch_size,
+                                        epochs_id = e, data_norm = data_norm,
+                                        data_path = data_path)
 
-        # Periodical network saving.
-        if int(e/50)== e/50:
-            vehicle_selection_accuracy = failure_testing.evaluate_vehicle_selection(network, testing_indices, data_path= data_path)
-            vehicle_distance = failure_testing.evaluate_vehicle_distance(network, testing_indices, data_path = data_path)
-            print("Saving model... Vehicle selection accuracy: {:.3f}, Mean distance: {:.3f}".format(vehicle_selection_accuracy, vehicle_distance), flush= True)
-            data_saver.save_model(network, str(e), folder = "Models/", relative_path = "./")
+        # Periodical network saving and evaluation.
+        if eval_frequency != 0 and int(e/eval_frequency)== e/eval_frequency:
+            vehicle_selection_accuracy = failure_testing.evaluate_vehicle_selection(
+                                                        network,
+                                                        testing_indices,
+                                                        data_path= data_path)
+            vehicle_distance = failure_testing.evaluate_vehicle_distance(
+                                                        network,
+                                                        testing_indices,
+                                                        data_path = data_path)
+            data_saver.save_model(
+                        network, str(e),
+                        folder = "Models/", relative_path = "./")
+
+            txt = ("Saving model..."+
+                    "Vehicle selection accuracy: {:.3f}, Mean distance: {:.3f}")
+            print(txt.format(
+                        vehicle_selection_accuracy,
+                        vehicle_distance), flush= True)
+
 
         training_accuracy = np.mean(training_epoch_accuracies)
         testing_accuracy = np.mean(testing_epoch_accuracies)
@@ -287,10 +306,13 @@ if __name__ == "__main__":
     Learning rate can also be set with -lr.
     Networks parameters can also be specified, see their definitions.
 
-    Call example:
+    Call examples:
         python3 training_testing.py 10 30
         python3 training_testing.py 10 30 -p "Data/"
         python3 training_testing.py 10 30 -la 4 -ls 128 -d 0.5 -p "Data/"
+        python3 training_testing.py 10 30 -adlr 1 0.0003 2 0.2 -p "TestTrashDir/"
+        python3 training_testing.py 10 30 -eval 0 -p "TestTrashDir/"
+
     """
     import argparse
     import monoloco_net
@@ -315,9 +337,20 @@ if __name__ == "__main__":
                             "Possibles choices are "+
                             "CrossEntropyLoss (CEL)."+
                             "Defaults to CEL.")
+
     parser.add_argument("-lr","--learning_rate", type=float,
                         default="0.0005",
                         help="The initial learning rate for the network.")
+    parser.add_argument("-wu", "--warmup_time", type=int,
+                        default=0,
+                        help="Warm up time for the network. Limits overfitting.")
+    parser.add_argument("-adlr", "--adaptative_lr", nargs = '*',
+                        default = [],
+                        help="Learning rate evolution over epochs."+
+                            "Come by pairs: "+
+                            "the first element is the epoch index for change, "+
+                            "the second element is the new learning rate.")
+
     parser.add_argument("-e","--epochs_amount", type=int,
                         default=200,
                         help="Number of epochs to be runned.")
@@ -341,6 +374,12 @@ if __name__ == "__main__":
                         default=1,
                         help="Set the number of trials."+
                             "Defaults to 1.")
+    parser.add_argument("-eval","--eval_frequency", type=int,
+                        default=50,
+                        help="Frequency in epochs for evaluation and saves."+
+                            "Defaults to every 50 epochs."+
+                            "Value 0 deactivates evaluation and saves.")
+
 
     parser.add_argument("-net","--network", type=str,
                         default="monoloco",
@@ -360,7 +399,7 @@ if __name__ == "__main__":
                             "Note: for MonoLoco networks it has to be pair.")
     parser.add_argument("-d","--dropout", type=float,
                         default=0.2,
-                        help="Dropout probability. Limits overfit.")
+                        help="Dropout probability. Limits overfitting.")
 
     ### optional arguments
     args = parser.parse_args()
@@ -378,6 +417,14 @@ if __name__ == "__main__":
     training_indices = tables_indices[:training_set_end]
     testing_indices = tables_indices[training_set_end:testing_set_end]
     validation_indices = tables_indices[testing_set_end: validation_set_end]
+
+
+    # Creating adaptative learning rate dictionnary from parser arguments
+    adaptative_lr = {}
+    for i in range(int(len(args.adaptative_lr)/2)):
+        index = int(args.adaptative_lr[2*i])
+        learning_rate = float(args.adaptative_lr[2*i+1])
+        adaptative_lr[index] = learning_rate
 
     #criterions = [torch.nn.MSELoss(), torch.nn.L1Loss(), torch.nn.CrossEntropyLoss()]
 
@@ -420,6 +467,9 @@ if __name__ == "__main__":
                                     learning_curve = args.learning_curve,
                                     break_accuracy = args.break_accuracy,
                                     data_path = args.path,
-                                    start_epoch = args.start_epoch)
+                                    start_epoch = args.start_epoch,
+                                    warmup_time = args.warmup_time,
+                                    adaptative_lr = adaptative_lr,
+                                    eval_frequency = args.eval_frequency)
         accs.append(acc)
     print("Average accuracy: {:.3f}".format(np.mean(accs)))
