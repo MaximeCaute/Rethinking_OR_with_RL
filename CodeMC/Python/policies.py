@@ -157,8 +157,9 @@ def test_policy_tables(table, assignements_table, policy):
             print("Wrong choice!", situation, assignement, policy_choice)
 
 if __name__ == "__main__":
-"""
-Upon being executed, these file generates assignements from given indices.
-# TO BE DONE!
-"""
+    """
+    Upon being executed, these file generates assignements from given indices.
+    # TO BE DONE!
+    """
+
     generate_assignements_from_indices(range(4000,8000), nearest_neighbour_policy, load_path = "NN_tables30/")
