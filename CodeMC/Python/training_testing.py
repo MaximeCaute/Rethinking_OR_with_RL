@@ -16,10 +16,10 @@ import data_saver
 import failure_testing
 import data2tensor
 
-def get_chosen_positions(output_tensor):
+"""def get_chosen_positions(output_tensor):
     # Detaching tensors due to gradient protections
     chosen_positions = [np.argmax( situation_tensor.detach() ) for situation_tensor in output_tensor]
-    return np.array(chosen_positions)
+    return np.array(chosen_positions)"""
 
 def compute_accuracy(network_output_tensor, expert_output_tensor):
     """
@@ -39,8 +39,8 @@ def compute_accuracy(network_output_tensor, expert_output_tensor):
         - accuracy: float.
             The accuracy of the network.
     """
-    network_chosen_positions = get_chosen_positions(network_output_tensor)
-    expert_chosen_positions =  get_chosen_positions(expert_output_tensor)
+    network_chosen_positions = data2tensor.get_chosen_positions(network_output_tensor)
+    expert_chosen_positions =  data2tensor.get_chosen_positions(expert_output_tensor)
 
     matches = (network_chosen_positions == expert_chosen_positions)
     accuracy = np.mean(matches)
@@ -69,9 +69,13 @@ def compute_loss(loss_criterion, network_output_tensor, expert_output_tensor):
     # In case the loss criterion is a Weighted Loss,
     # data is processed accordingly
     if isinstance(loss_criterion, torch.nn.modules.loss._WeightedLoss):
-        expert_choice_tensor = torch.tensor(get_chosen_positions(expert_output_tensor))
-        minibatch_loss = loss_criterion(F.softmax(network_output_tensor.view(batch_size,-1), dim = 1),
-                                        expert_choice_tensor)
+        expert_choice_tensor = torch.tensor(
+                        data2tensor.get_chosen_positions(expert_output_tensor)
+                    )
+        minibatch_loss = loss_criterion(
+                F.softmax( network_output_tensor.view(batch_size,-1), dim = 1),
+                expert_choice_tensor
+            )
     # Otherwise
     else:
         minibatch_loss = loss_criterion(network_output_tensor.view(batch_size,-1),

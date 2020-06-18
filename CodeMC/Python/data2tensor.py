@@ -106,7 +106,6 @@ def get_tensors(situations_images, assignements_images,
     return input_tensor, output_tensor
 
 def get_chosen_positions(output_tensor):
-    # TO BE MOVED?
     """
     This function extracts the set of chosen positions from an output tensor.
     ---
