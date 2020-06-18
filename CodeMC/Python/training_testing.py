@@ -228,48 +228,48 @@ def train_and_test_from_indices(network, training_indices, testing_indices,
                                 verbose = False, learning_curve = False,
                                 break_accuracy = 1.2, data_norm = False,
                                 data_path = "", start_epoch = 0):
-"""
-This function handles the whole training and testing of a network.
----
-Input:
-    - network: Pytorch Module.
-        The network to train.
-    - training_indices: int list.
-        The list of the indices of the table on which the training is performed.
-    - testing_indices: int list.
-        The list of the indices of the table on which the testing is performed.
-    - loss_citerion: PyTorch Loss.
-        A loss criterion as defined by PyTorch, to compute loss from.
-    - optimizer: PyTorch Optimizer.
-        The optimizer to update network weights for training.
-Parameters:
-    - epochs_amount: int.
-        The maximum number of epochs to be runned.
-            Defaults to 100.
-    - verbose: boolean.
-        Toggles display of additional information.
-            Defaults to False.
-    - learning_curve: boolean.
-        Toggles display of the learning curve of the network.
-            Defaults to False.
-    - break_accuracy: float.
-        The training accuracy over which the run is stopped.
-            Avoids to do all epochs if unnecessary.
-    - data_norm: boolean.
-        Regulates data normalization in tensor creation.
-            Defaults to False.
-    - data_path: string.
-        The path to the folder where data is located.
-            Defaults to local folder.
-    - start_epoch: int.
-        The epoch at which the training starts.
-            If not 0, model saved at this epoch is loaded.
-Output:
-    - max_accuracy: float.
-        The maximal testing accuracy hit by the network.
-    - max_accuracy_epoch: int.
-        The id of the epoch where the maximal testing accuracy was hit.
-"""
+    """
+    This function handles the whole training and testing of a network.
+    ---
+    Input:
+        - network: Pytorch Module.
+            The network to train.
+        - training_indices: int list.
+            The list of the indices of the table on which the training is performed.
+        - testing_indices: int list.
+            The list of the indices of the table on which the testing is performed.
+        - loss_citerion: PyTorch Loss.
+            A loss criterion as defined by PyTorch, to compute loss from.
+        - optimizer: PyTorch Optimizer.
+            The optimizer to update network weights for training.
+    Parameters:
+        - epochs_amount: int.
+            The maximum number of epochs to be runned.
+                Defaults to 100.
+        - verbose: boolean.
+            Toggles display of additional information.
+                Defaults to False.
+        - learning_curve: boolean.
+            Toggles display of the learning curve of the network.
+                Defaults to False.
+        - break_accuracy: float.
+            The training accuracy over which the run is stopped.
+                Avoids to do all epochs if unnecessary.
+        - data_norm: boolean.
+            Regulates data normalization in tensor creation.
+                Defaults to False.
+        - data_path: string.
+            The path to the folder where data is located.
+                Defaults to local folder.
+        - start_epoch: int.
+            The epoch at which the training starts.
+                If not 0, model saved at this epoch is loaded.
+    Output:
+        - max_accuracy: float.
+            The maximal testing accuracy hit by the network.
+        - max_accuracy_epoch: int.
+            The id of the epoch where the maximal testing accuracy was hit.
+    """
 
 
     training_accuracies = []
