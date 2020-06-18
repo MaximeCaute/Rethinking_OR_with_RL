@@ -345,11 +345,43 @@ def test(table, a_table, multiple_nns = False, fleet_size = 30):
 
 
 if __name__ == "__main__":
-"""
-Upon being executed, generates a set of tables.
-# TO BE DONE.
-"""
-    generate_tables(4000, requests_amount = 500, image_size = 30, fleet_size = 10,
-                    vehicle_overlaps = False,
-                    multiple_nearest = False, reference_for_nearest = (-1,-1),
-                    save = True, save_path = "NN_tables30/")
+    """
+    Upon being executed, generates a set of tables.
+    Several arguments can be added, see 'generate_tables' description
+    for more precision.
+
+    Call example:
+        python3 data_generator.py 5 -p "TestTableDir/"
+    """
+    import argparse
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument("tables", type=int,
+                        help="Number of tables to be generated.")
+    ### optional arguments
+    parser.add_argument("-r", "--requests_amount", type=int, default=500,
+                        help="Number of requests per table.")
+    parser.add_argument("-i", "--image_size", type=int, default=30,
+                        help="Size of the images to be generated, in pixels.")
+    parser.add_argument("-f", "--fleet_size", type=int, default=10,
+                        help="Size of the fleet to be generated.")
+    parser.add_argument("-vo", "--vehicles_overlaps", action="store_true",
+                        default=False,
+                        help="Allows vehicle overlap.")
+    parser.add_argument("-mn", "--multiple_nearest", action="store_true",
+                        default=False,
+                        help="Allows multiple nearest neighbours to reference.")
+    parser.add_argument("-ref", "--reference_for_nearest", type=int, nargs=2,
+                        default = [-1, -1],
+                        help="Sets reference position for nearest neighbour.")
+    parser.add_argument("-p", "--path", type = str, default="",
+                        help="The path where to save files. Defaults to local.")
+    args = parser.parse_args()
+
+    generate_tables(args.tables,
+                    requests_amount = args.requests_amount,
+                    image_size = args.image_size, fleet_size = args.fleet_size,
+                    vehicle_overlaps = args.vehicles_overlaps,
+                    multiple_nearest = args.multiple_nearest,
+                    reference_for_nearest = args.reference_for_nearest,
+                    save = True, save_path = args.path)#"NN_tables30/"
