@@ -12,6 +12,31 @@ import data_images
 import data2tensor
 import torch
 
+def compute_accuracy(network_output_tensor, expert_output_tensor):
+    """
+    This functions compute the accuracy from an output tensor
+    to a comparison tensor. This accuracy is the percentage of the time in which
+    the matching cell is selected.
+    ---
+    Input:
+        - network_output_tensor: float 3D tensor.
+            The output tensor from the network.
+                The first dimension is the batch dimension.
+                The two other dimensions are the dimensions of the actual map.
+        - expert_output_tensor: float 3D tensor.
+            The ouptut tensor from the network.
+                Dimensions akin to network_output_tensor.
+    Output:
+        - accuracy: float.
+            The accuracy of the network.
+    """
+    network_chosen_positions = data2tensor.get_chosen_positions(network_output_tensor)
+    expert_chosen_positions =  data2tensor.get_chosen_positions(expert_output_tensor)
+
+    matches = (network_chosen_positions == expert_chosen_positions)
+    accuracy = np.mean(matches)
+    return accuracy
+
 def compute_vehicle_selection_accuracy(network_output_tensor, input_tensor):
     """
     This function computes the accuracy of vehicle selection. In other words,

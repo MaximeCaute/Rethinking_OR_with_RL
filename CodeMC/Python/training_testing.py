@@ -16,11 +16,6 @@ import data_saver
 import failure_testing
 import data2tensor
 
-"""def get_chosen_positions(output_tensor):
-    # Detaching tensors due to gradient protections
-    chosen_positions = [np.argmax( situation_tensor.detach() ) for situation_tensor in output_tensor]
-    return np.array(chosen_positions)"""
-
 def compute_accuracy(network_output_tensor, expert_output_tensor):
     """
     This functions compute the accuracy from an output tensor
@@ -157,7 +152,9 @@ def epoch_from_indices(network, indices,
                 minibatch_loss.backward()
                 optimizer.step()
 
-            minibatch_accuracy = compute_accuracy(network_output_tensor, expert_output_tensor)
+            minibatch_accuracy = failure_testing.compute_accuracy(
+                                                    network_output_tensor,
+                                                    expert_output_tensor)
 
             summed_loss+= minibatch_loss.item()
             accuracies.append(minibatch_accuracy)
