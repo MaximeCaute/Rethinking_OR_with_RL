@@ -287,7 +287,9 @@ if __name__ == "__main__":
     Learning rate can also be set with -lr.
 
     Call example:
-
+        python3 training_testing.py 10 30
+        python3 training_testing.py 10 30 -p "Data/"
+        python3 training_testing.py 10 30 -la 4 -ls 128 -d 0.5 -p "Data/"
     """
     import argparse
     import monoloco_net
@@ -297,13 +299,6 @@ if __name__ == "__main__":
                         help="Number of tables to be used.")
     parser.add_argument("image_size", type=int,
                         help="Size of the images to be manipulated.")
-    parser.add_argument("-net","--network", type=str,
-                        default="monoloco",
-                        choices=["monoloco"],
-                        help="Network category to be trained."+
-                            "Possible choices are "+
-                            "MonoLoco (monoloco). "+
-                            "Defaults to monoloco")
     parser.add_argument("-train", "--training_set_share", type=float,
                         default=0.6,
                         help="Percentage of the data set used for training."+
@@ -341,6 +336,30 @@ if __name__ == "__main__":
                         default=0,
                         help="The starting epoch.")
 
+    parser.add_argument("-t","--trials", type = int,
+                        default=1,
+                        help="Set the number of trials."+
+                            "Defaults to 1.")
+
+    parser.add_argument("-net","--network", type=str,
+                        default="monoloco",
+                        choices=["monoloco"],
+                        help="Network category to be trained."+
+                            "Possible choices are "+
+                            "MonoLoco (monoloco). "+
+                            "Defaults to monoloco")
+    parser.add_argument("-ls","--layer_size", type=int,
+                        default=256,
+                        help="Size of the hidden fully-connected layers."+
+                            "Defaults to 256")
+    parser.add_argument("-la","--layers_amount", type=int,
+                        default = 6,
+                        help="The amount of hidden fully-connected layers"+
+                            "Defaults to 6."+
+                            "Note: for MonoLoco networks it has to be pair.")
+    parser.add_argument("-d","--dropout", type=float,
+                        default=0.2,
+                        help="Dropout probability. Limits overfit.")
 
     ### optional arguments
     args = parser.parse_args()
@@ -362,8 +381,8 @@ if __name__ == "__main__":
     #criterions = [torch.nn.MSELoss(), torch.nn.L1Loss(), torch.nn.CrossEntropyLoss()]
 
     accs = []
-    for i in range(1):
-
+    # Running over several trials to limit randomness
+    for i in range(args.trials):
         np.random.shuffle(tables_indices)
 
         training_indices = tables_indices[:training_set_end]
@@ -371,13 +390,19 @@ if __name__ == "__main__":
         validation_indices = tables_indices[testing_set_end: validation_set_end]
 
         print("\rTrial {}".format(i))
-        loss_criterion = (torch.nn.CrossEntropyLoss() if args.loss_criterion == "CEL"
-                            else None)
+        loss_criterion = (torch.nn.CrossEntropyLoss()
+                            if args.loss_criterion == "CEL"
+                else None)
         # trivia_net = networks.MultiTriviaNet(2, IMAGE_SIZE,
         #             hidden_layers_amount = 5, hidden_layer_size = 600)
         #trivia_net = networks.Net()
-        network = (monoloco_net.LinearModel(args.image_size) if args.network == "monoloco"
-                            else None)
+        network = (monoloco_net.LinearModel(args.image_size,
+                                    channels_amount = 2,
+                                    linear_size = args.layer_size,
+                                    num_stage = int(args.layers_amount/2),
+                                    p_dropout=args.dropout)
+                            if args.network == "monoloco"
+                else None)
         #trivia_net = monoloco_net.LinearModel(IMAGE_SIZE, linear_size=128, num_stage = 8)
         print('Num parameters: {}\t Num Trainable parameters: {}'.format(
             sum(p.numel() for p in network.parameters()),
