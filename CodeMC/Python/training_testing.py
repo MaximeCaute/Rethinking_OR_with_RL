@@ -361,3 +361,124 @@ def train_and_test_from_indices(network, training_indices, testing_indices,
         plt.show()
 
     return max_accuracy, max_accuracy_epoch
+
+
+if __name__ == "__main__":
+    """
+    Upon being executed, trains and tests a network.
+    ---
+    Several arguments can be added, see 'train_and_test_from_indices'
+    description for more precision.
+    Learning rate can also be set with -lr.
+
+    Call example:
+
+    """
+    import argparse
+    import monoloco_net
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument("tables", type=int,
+                        help="Number of tables to be used.")
+    parser.add_argument("image_size", type=int,
+                        help="Size of the images to be manipulated.")
+    parser.add_argument("-net","--network", type=str,
+                        default="monoloco",
+                        choices=["monoloco"],
+                        help="Network category to be trained."+
+                            "Possible choices are "+
+                            "MonoLoco (monoloco). "+
+                            "Defaults to monoloco")
+    parser.add_argument("-train", "--training_set_share", type=float,
+                        default=0.6,
+                        help="Percentage of the data set used for training."+
+                            "Defaults to 60 percents.")
+    parser.add_argument("-test", "--testing_set_share", type=float,
+                        default=0.3,
+                        help="Percentage of the data set used for training."+
+                            "Defaults to 30 percents.")
+    parser.add_argument("-loss", "--loss_criterion", type=str,
+                        default="CEL",
+                        choices=["CEL"],
+                        help="Loss criterion to be used for loss computation."+
+                            "Possibles choices are "+
+                            "CrossEntropyLoss (CEL)."+
+                            "Defaults to CEL.")
+    parser.add_argument("-lr","--learning_rate", type=float,
+                        default="0.0005",
+                        help="The initial learning rate for the network.")
+    parser.add_argument("-e","--epochs_amount", type=int,
+                        default=200,
+                        help="Number of epochs to be runned.")
+    parser.add_argument("-mb","--minibatch_size", type=int,
+                        default=50,
+                        help="Size of the minibatches.")
+    parser.add_argument("-lc", "--learning_curve", action="store_true",
+                        default=False,
+                        help="Displays the learning curve at the end of the run.")
+    parser.add_argument("-b", "--break_accuracy", type=float,
+                        default=0.99,
+                        help="Training accuracy at which the training is halted.")
+    parser.add_argument("-p", "--path", type=str,
+                        default="",
+                        help="The folder where the data is located.")
+    parser.add_argument("-s","-start","--start_epoch", type = int,
+                        default=0,
+                        help="The starting epoch.")
+
+
+    ### optional arguments
+    args = parser.parse_args()
+
+    tables_indices = np.arange(args.tables)
+    training_set_size = int(args.tables*args.training_set_share)
+    testing_set_size = int(args.tables*args.testing_set_share)
+    validation_set_share=1-args.training_set_share-args.training_set_share
+    validation_set_size = int(args.tables*validation_set_share)
+
+    training_set_end = training_set_size
+    testing_set_end = training_set_end + testing_set_size
+    validation_set_end = testing_set_end + validation_set_size
+
+    training_indices = tables_indices[:training_set_end]
+    testing_indices = tables_indices[training_set_end:testing_set_end]
+    validation_indices = tables_indices[testing_set_end: validation_set_end]
+
+    #criterions = [torch.nn.MSELoss(), torch.nn.L1Loss(), torch.nn.CrossEntropyLoss()]
+
+    accs = []
+    for i in range(1):
+
+        np.random.shuffle(tables_indices)
+
+        training_indices = tables_indices[:training_set_end]
+        testing_indices = tables_indices[training_set_end:testing_set_end]
+        validation_indices = tables_indices[testing_set_end: validation_set_end]
+
+        print("\rTrial {}".format(i))
+        loss_criterion = (torch.nn.CrossEntropyLoss() if args.loss_criterion == "CEL"
+                            else None)
+        # trivia_net = networks.MultiTriviaNet(2, IMAGE_SIZE,
+        #             hidden_layers_amount = 5, hidden_layer_size = 600)
+        #trivia_net = networks.Net()
+        network = (monoloco_net.LinearModel(args.image_size) if args.network == "monoloco"
+                            else None)
+        #trivia_net = monoloco_net.LinearModel(IMAGE_SIZE, linear_size=128, num_stage = 8)
+        print('Num parameters: {}\t Num Trainable parameters: {}'.format(
+            sum(p.numel() for p in network.parameters()),
+            sum(p.numel() for p in network.parameters() if p.requires_grad)))
+
+        optimizer = torch.optim.Adam(network.parameters(),
+                                    lr = args.learning_rate)#changed form 0.0005
+        acc = train_and_test_from_indices(network,
+                                    training_indices, testing_indices,
+                                    loss_criterion, optimizer,
+                                    epochs_amount = args.epochs_amount,
+                                    minibatch_size = args.minibatch_size,
+                                    verbose = True,
+                                    learning_curve = args.learning_curve,
+                                    break_accuracy = args.break_accuracy,
+                                    data_path = args.path,
+                                    start_epoch = args.start_epoch)
+        accs.append(acc)
+    print("Average accuracy: {:.3f}".format(np.mean(accs)))
