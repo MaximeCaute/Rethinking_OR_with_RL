@@ -14,69 +14,7 @@ import data_images
 import policies
 import data_saver
 import failure_testing
-
-#Why not data2tensor? Moved if I recall
-def get_input_data_tensor(situations_images, batch_indices = [], data_norm = False):
-    # Setting batch indices as whole set if not specified.
-    if batch_indices == []:
-        batch_indices = [i for i in range(len(situations_images))]
-
-    input_array = np.array([situations_images[i] for i in batch_indices])
-
-
-    # Data normalization per channel
-    if data_norm:
-        channels_amount = input_array.shape[1]
-        for ch in range(channels_amount):
-            input_array[:,ch,:,:]-= np.mean(input_array[:, ch, :, :], axis = 0)
-            input_array[:,ch,:,:]/= np.std(input_array[:, ch, :, :], axis = 0)
-
-    input_tensor = torch.tensor(input_array).type(torch.FloatTensor)
-
-    return input_tensor
-
-def get_output_data_tensor(assignements_images, batch_indices = []):
-    # Setting batch indices as whole set if not specified.
-    if batch_indices == []:
-        batch_indices = [i for i in range(len(situations_images))]
-    output_tensor = torch.tensor([assignements_images[i] for i in batch_indices]).type(torch.FloatTensor)
-
-    return output_tensor
-
-# TODO move
-def get_network_tensors(situations_images, assignements_images, batch_indices = [], data_norm = False):
-    """
-    This functions prepares the tensors for a network training or testing.
-    ---
-    Input:
-        - situations_images: float 4D array.
-            The set of situation images.
-                The first dimension is the batch dimension.
-                The second dimension is the channels dimension
-                The third and fourth dimensions reflect the actual 2D map.
-        - assignements_images: float 3D array.
-            The set of assignement images.
-                The first dimension is the batch dimension.
-                The second and third dimensions reflect the actual 2D map.
-    Parameters:
-        - batch_indices: int list.
-            The indices of the batch element to be taken.
-                Defaults to the whole batch.
-        - data_norm: boolean.
-            Regulates data normalization in tensor creation.
-                Defaults to False.
-    Output:
-        - input_tensor: float 4D tensor.
-            The input tensor from the situations images set.
-                Dimensions akin to situations_images.
-        - output_tensor: float 3D tensor.
-            The output tensor from the assignements images set.
-                Dimensions akin to assignements_images.
-    """
-    input_tensor  = get_input_data_tensor (situations_images, batch_indices =batch_indices, data_norm = data_norm)
-    output_tensor = get_output_data_tensor (assignements_images, batch_indices = batch_indices)
-
-    return input_tensor, output_tensor
+import data2tensor
 
 def get_chosen_positions(output_tensor):
     # Detaching tensors due to gradient protections
@@ -202,10 +140,11 @@ def epoch_from_indices(network, indices,
             if optimizer is not None:
                 optimizer.zero_grad()
 
-            input_tensor = get_input_data_tensor(situations_images, minibatch_indices, data_norm = data_norm)
-
+            input_tensor, expert_output_tensor = data2tensor.get_tensors(
+                                        situations_images, assignements_images,
+                                        batch_indices=minibatch_indices,
+                                        data_norm=False)
             network_output_tensor = network(input_tensor)
-            expert_output_tensor = get_output_data_tensor(assignements_images, minibatch_indices)
 
             # Computing loss on flattened tensor output
             minibatch_loss = compute_loss(loss_criterion, network_output_tensor, expert_output_tensor)

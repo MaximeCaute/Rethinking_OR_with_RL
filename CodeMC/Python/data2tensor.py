@@ -67,6 +67,44 @@ def get_output_data_tensor(assignements_images, batch_indices = []):
 
     return output_tensor
 
+def get_tensors(situations_images, assignements_images,
+                        batch_indices = [], data_norm = False):
+    """
+    This functions prepares the tensors for a network training or testing.
+    ---
+    Input:
+        - situations_images: float 4D array.
+            The set of situation images.
+                The first dimension is the batch dimension.
+                The second dimension is the channels dimension
+                The third and fourth dimensions reflect the actual 2D map.
+        - assignements_images: float 3D array.
+            The set of assignement images.
+                The first dimension is the batch dimension.
+                The second and third dimensions reflect the actual 2D map.
+    Parameters:
+        - batch_indices: int list.
+            The indices of the batch element to be taken.
+                Defaults to the whole batch.
+        - data_norm: boolean.
+            Regulates data normalization in tensor creation.
+                Defaults to False.
+    Output:
+        - input_tensor: float 4D tensor.
+            The input tensor from the situations images set.
+                Dimensions akin to situations_images.
+        - output_tensor: float 3D tensor.
+            The output tensor from the assignements images set.
+                Dimensions akin to assignements_images.
+    """
+    input_tensor  = get_input_data_tensor(situations_images,
+                                        batch_indices = batch_indices,
+                                        data_norm = data_norm)
+    output_tensor = get_output_data_tensor (assignements_images,
+                                            batch_indices = batch_indices)
+
+    return input_tensor, output_tensor
+
 def get_chosen_positions(output_tensor):
     # TO BE MOVED?
     """
