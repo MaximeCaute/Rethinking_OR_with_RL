@@ -164,6 +164,7 @@ if __name__ == "__main__":
     description for more precision.
 
     Call Example:
+        python3 policies.py 10 -p "TestTrashDir/"
     """
     import argparse
 
