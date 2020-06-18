@@ -353,6 +353,7 @@ if __name__ == "__main__":
 
     Call example:
         python3 data_generator.py 5 -p "TestTableDir/"
+        python3 data_generator.py 5 -p "TestTableDir/ -ref 0 0"
     """
     import argparse
 
