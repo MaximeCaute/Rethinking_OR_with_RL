@@ -65,7 +65,7 @@ def epoch_from_indices(network, indices,
             The network to run an epoch from.
         - indices: int list.
             The indices of the tables on which to run the epoch.
-        - loss_citerion: PyTorch Loss.
+        - loss_criterion: PyTorch Loss.
             A loss criterion as defined by PyTorch, to compute loss from.
     Parameters:
         - optimizer: PyTorch Optimizer or None.
@@ -155,7 +155,7 @@ def train_and_test_from_indices(network, training_indices, testing_indices,
             The list of the indices of the table on which the training is performed.
         - testing_indices: int list.
             The list of the indices of the table on which the testing is performed.
-        - loss_citerion: PyTorch Loss.
+        - loss_criterion: PyTorch Loss.
             A loss criterion as defined by PyTorch, to compute loss from.
         - optimizer: PyTorch Optimizer.
             The optimizer to update network weights for training.
