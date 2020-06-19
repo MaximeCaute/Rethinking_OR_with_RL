@@ -114,10 +114,6 @@ Notable parameters include:
 
 For more precisions, the user may run *python3 training_accuracy.py -h*
 
-
-
-WIP
-
 June 2020,
 
 Maxime Cauté
