@@ -321,6 +321,7 @@ if __name__ == "__main__":
 
     Call examples:
         python3 training_testing.py 10 30
+        python3 training_testing.py 10 30 -net FC
         python3 training_testing.py 10 30 -p "Data/"
         python3 training_testing.py 10 30 -la 4 -ls 128 -d 0.5 -p "Data/"
         python3 training_testing.py 10 30 -adlr 1 0.0003 2 0.2 -p "TestTrashDir/"
@@ -329,6 +330,7 @@ if __name__ == "__main__":
     """
     import argparse
     import monoloco_net
+    import networks
 
     parser = argparse.ArgumentParser()
     parser.add_argument("tables", type=int,
@@ -395,8 +397,8 @@ if __name__ == "__main__":
 
 
     parser.add_argument("-net","--network", type=str,
-                        default="monoloco",
-                        choices=["monoloco"],
+                        default="ML",
+                        choices=["ML", "FC"],
                         help="Network category to be trained."+
                             "Possible choices are "+
                             "MonoLoco (monoloco). "+
@@ -462,7 +464,11 @@ if __name__ == "__main__":
                                     linear_size = args.layer_size,
                                     num_stage = int(args.layers_amount/2),
                                     p_dropout=args.dropout)
-                            if args.network == "monoloco"
+                            if args.network == "ML"
+                else networks.MultiTriviaNet(2, args.image_size,
+                                    hidden_layers_amount = args.layers_amount,
+                                    hidden_layer_size = args.layer_size)
+                            if args.network == "FC"
                 else None)
         #trivia_net = monoloco_net.LinearModel(IMAGE_SIZE, linear_size=128, num_stage = 8)
         print('Num parameters: {}\t Num Trainable parameters: {}'.format(
