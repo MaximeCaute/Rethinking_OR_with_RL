@@ -9,7 +9,6 @@ Upon being executed, it generates a set of data_tables.
 
 import numpy as np
 import numpy.random as rdm
-import pandas as pd
 
 import data_saver
 
