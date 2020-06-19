@@ -206,7 +206,7 @@ def train_and_test_from_indices(network, training_indices, testing_indices,
     testing_losses = []
     epochs = range(start_epoch, epochs_amount)
     if start_epoch!=0:
-        network = data_saver.load_model(str(start_epoch-1), folder = "Models", relative_path = "./")
+        network = data_saver.load_model(str(start_epoch-1), folder = "Models", relative_path = data_path)
 
     for e in epochs:
         # Learning rate handling.
@@ -244,22 +244,35 @@ def train_and_test_from_indices(network, training_indices, testing_indices,
         # Periodical network saving and evaluation.
         if eval_frequency != 0 and int(e/eval_frequency)== e/eval_frequency:
             vehicle_selection_accuracy = failure_testing.evaluate_vehicle_selection(
-                                                        network,
-                                                        testing_indices,
-                                                        data_path= data_path)
+                                                network,
+                                                testing_indices,
+                                                data_path= data_path,
+                                                minibatch_size=minibatch_size,
+                                                data_norm=data_norm)
             vehicle_distance = failure_testing.evaluate_vehicle_distance(
-                                                        network,
-                                                        testing_indices,
-                                                        data_path = data_path)
+                                                network,
+                                                testing_indices,
+                                                data_path = data_path,
+                                                minibatch_size=minibatch_size,
+                                                data_norm = data_norm)
+            loose_accuracy = failure_testing.evaluate_loose_accuracy(
+                                                network,
+                                                testing_indices,
+                                                data_path = data_path,
+                                                minibatch_size=minibatch_size,
+                                                data_norm = data_norm)
             data_saver.save_model(
                         network, str(e),
-                        folder = "Models/", relative_path = "./")
+                        folder = "Models", relative_path = data_path)
 
             txt = ("Saving model..."+
-                    "Vehicle selection accuracy: {:.3f}, Mean distance: {:.3f}")
+                    "Vehicle selection accuracy: {:.3f}, "+
+                    "Mean distance: {:.3f}, "+
+                    "Loose accuracy: {:.3}.")
             print(txt.format(
                         vehicle_selection_accuracy,
-                        vehicle_distance), flush= True)
+                        vehicle_distance,
+                        loose_accuracy), flush= True)
 
 
         training_accuracy = np.mean(training_epoch_accuracies)
