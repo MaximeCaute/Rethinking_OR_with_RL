@@ -324,8 +324,8 @@ if __name__ == "__main__":
         python3 training_testing.py 10 30 -net FC
         python3 training_testing.py 10 30 -p "Data/"
         python3 training_testing.py 10 30 -la 4 -ls 128 -d 0.5 -p "Data/"
-        python3 training_testing.py 10 30 -adlr 1 0.0003 2 0.2 -p "TestTrashDir/"
-        python3 training_testing.py 10 30 -eval 0 -p "TestTrashDir/"
+        python3 training_testing.py 10 30 -adlr 1 0.0003 2 0.2 -p "Data/"
+        python3 training_testing.py 10 30 -eval 0 -p "Data/"
 
     """
     import argparse
@@ -398,11 +398,13 @@ if __name__ == "__main__":
 
     parser.add_argument("-net","--network", type=str,
                         default="ML",
-                        choices=["ML", "FC"],
+                        choices=["ML", "FC", "CO"],
                         help="Network category to be trained."+
                             "Possible choices are "+
-                            "MonoLoco (monoloco). "+
-                            "Defaults to monoloco")
+                            "MonoLoco (ML), "+
+                            "Fully-Connected (FC),"+
+                            "Convolutional (CO)."
+                            "Defaults to ML")
     parser.add_argument("-ls","--layer_size", type=int,
                         default=256,
                         help="Size of the hidden fully-connected layers."+
@@ -456,9 +458,7 @@ if __name__ == "__main__":
         loss_criterion = (torch.nn.CrossEntropyLoss()
                             if args.loss_criterion == "CEL"
                 else None)
-        # trivia_net = networks.MultiTriviaNet(2, IMAGE_SIZE,
-        #             hidden_layers_amount = 5, hidden_layer_size = 600)
-        #trivia_net = networks.Net()
+
         network = (monoloco_net.LinearModel(args.image_size,
                                     channels_amount = 2,
                                     linear_size = args.layer_size,
@@ -469,8 +469,14 @@ if __name__ == "__main__":
                                     hidden_layers_amount = args.layers_amount,
                                     hidden_layer_size = args.layer_size)
                             if args.network == "FC"
+                # AtariNet is not fully implemented here
+                # for the sake of simplicity,
+                # several parameters are missing.
+                else networks.AtariNet(2, args.image_size,
+                                    hidden_layer_size = args.layer_size)
+                            if args.network == "CO"
                 else None)
-        #trivia_net = monoloco_net.LinearModel(IMAGE_SIZE, linear_size=128, num_stage = 8)
+
         print('Num parameters: {}\t Num Trainable parameters: {}'.format(
             sum(p.numel() for p in network.parameters()),
             sum(p.numel() for p in network.parameters() if p.requires_grad)))
