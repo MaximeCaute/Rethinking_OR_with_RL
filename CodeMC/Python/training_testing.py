@@ -347,10 +347,11 @@ if __name__ == "__main__":
                             "Defaults to 30 percents.")
     parser.add_argument("-loss", "--loss_criterion", type=str,
                         default="CEL",
-                        choices=["CEL"],
+                        choices=["CEL", "MSE"],
                         help="Loss criterion to be used for loss computation."+
                             "Possibles choices are "+
-                            "CrossEntropyLoss (CEL)."+
+                            "CrossEntropyLoss (CEL),"+
+                            "Mean Squared Error (MSE)."
                             "Defaults to CEL.")
 
     parser.add_argument("-lr","--learning_rate", type=float,
@@ -455,9 +456,12 @@ if __name__ == "__main__":
         validation_indices = tables_indices[testing_set_end: validation_set_end]
 
         print("\rTrial {}".format(i))
-        loss_criterion = (torch.nn.CrossEntropyLoss()
-                            if args.loss_criterion == "CEL"
-                else None)
+        loss_criterion = (  torch.nn.CrossEntropyLoss()
+                                    if args.loss_criterion == "CEL"
+                            else torch.nn.MSELoss()
+                                    if args.loss_criterion == "MSE"
+                            else None)
+
 
         network = (monoloco_net.LinearModel(args.image_size,
                                     channels_amount = 2,
