@@ -1,5 +1,6 @@
 Bibliography/*.pdf
 Papers/*
+!Papers/report_rethinking_OR.pdf
 
 Logs/*
 Code/*
